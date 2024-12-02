@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { filter, map, Observable, startWith, switchMap } from 'rxjs';
+import { catchError, filter, map, Observable, startWith, switchMap, throwError } from 'rxjs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { TeamService } from '../../../services/team.service';
@@ -52,6 +52,7 @@ export class CompetitionRegistrationComponent implements OnInit {
   AthleteResultValue:string | null = null;
   eventId!:string;
   statement!:number;
+  isLoadingAddAthlet!:boolean;
   registerAthleteForm!:FormGroup;
   raceRegisterAthletes = signal<any>(null)
   AllRegisterAthletes = signal<any>(null)
@@ -72,18 +73,22 @@ export class CompetitionRegistrationComponent implements OnInit {
     private fb: FormBuilder,
   ) {
      this.eventId = this.route.snapshot.paramMap.get('id') || '';
-     this.statement = JSON.parse(this.route.snapshot.paramMap.get('statement') || '');
      this.registerAthleteForm = this.fb.group({
       athleteInfo: ['', [Validators.required]],
       athleteResult: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(8)]],
     });
+
+    this.coachId = this.sessionService.userId;
+     this.teamId = this.teamService.chosenTeam._id;
     this.registerAthleteForm.get('athleteResult')?.disable();
-    competitionService.getEventDetails(this.eventId).subscribe((event) => {
+    competitionService.getEventDetailsForCoach(this.eventId,this.coachId,this.teamId).subscribe((event) => {
       this.event.set(event);
+      this.statement = event.statement.participantMaxCount;
     });
   }
 
   ngOnInit(): void {
+    
     this.registerAthleteForm.get('athleteInfo')?.valueChanges.pipe(
       startWith(''),
       map((value) => (typeof value === 'string' ? value : '')),
@@ -108,9 +113,7 @@ export class CompetitionRegistrationComponent implements OnInit {
       }
       prevValue = item;
     })
-    
-    this.coachId = this.sessionService.userId;
-     this.teamId = this.teamService.chosenTeam._id;
+  
 
     this.getAllRegisteredAthletes()
   }
@@ -138,19 +141,46 @@ export class CompetitionRegistrationComponent implements OnInit {
 
   addAthlete() {
     let time;
-    if(this.chosenAthleteToRegister.result) {
+    if (this.chosenAthleteToRegister.result) {
       time = this.chosenAthleteToRegister.result.result.time;
     } else {
-      time = this.convertItimeService.convertStringTimeToItime(this.registerAthleteForm.value.athleteResult || '')
+      time = this.convertItimeService.convertStringTimeToItime(
+        this.registerAthleteForm.value.athleteResult || ''
+      );
     }
-    
-    this.competitionService.addEventPartiipant(this.coachId,this.teamId,this.eventId,this.chosenAthleteToRegister.member.athlete._id,this.chosenRace?._id || '',time || null).subscribe(item => {
-      if(item.athlete) {
-        this.getRegisteredAthletes()
-        this.getAllRegisteredAthletes()
-      }
-    })
+  
+    this.isLoadingAddAthlet = true;
+  
+    this.competitionService
+      .addEventPartiipant(
+        this.coachId,
+        this.teamId,
+        this.eventId,
+        this.chosenAthleteToRegister.member.athlete._id,
+        this.chosenRace?._id || '',
+        time || null
+      )
+      .pipe(
+        catchError((err) => {
+          this.isLoadingAddAthlet = false;
+          if (err.status === 400) {
+          } else {
+            alert('Something went wrong. Please try again later.');
+          }
+          return throwError(() => err); // Optionally rethrow error for further handling
+        })
+      )
+      .subscribe((item) => {
+        if (item.athlete) {
+          // Success response handling
+          this.isLoadingAddAthlet = false; // Reset loader
+          this.clearForm();
+          this.getRegisteredAthletes();
+          this.getAllRegisteredAthletes();
+        }
+      });
   }
+  
 
   getRegisteredAthletes(){
     this.isLoading = true;
@@ -209,7 +239,6 @@ deleteRegisteredAthlete(athlete:any){
       this.registerAthleteForm.get('athleteResult')?.enable();
     }
   }
-
 
   private _filter(value: string | null): TeamAthleteQualifications[] | null {
     const filterValue = (value || '').toLowerCase()

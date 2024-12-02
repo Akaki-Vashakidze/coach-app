@@ -48,9 +48,9 @@
                   </div>
                 </div>
                 <div class="addAthleteCont">
-                  <div style="text-align: center; padding: 5px;">Add Athlete</div>
+                  <div *ngIf="!isLoadingAddAthlet"  style="text-align: center; padding: 5px;">Add Athlete</div>
                   <form [formGroup]="registerAthleteForm" class="add_athlete_form">
-                    <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-form-field *ngIf="!isLoadingAddAthlet" class="example-full-width" appearance="outline">
                       <mat-label>athlete</mat-label>
                       <input type="text" placeholder="Pick one" matInput formControlName="athleteInfo"
                         [matAutocomplete]="auto" />
@@ -62,13 +62,14 @@
                       </mat-autocomplete>
                     </mat-form-field>
       
-                    <mat-form-field class="full-width">
+                    <mat-form-field *ngIf="!isLoadingAddAthlet" class="full-width">
                       <mat-label>result</mat-label>
                       <input formControlName="athleteResult" maxlength="8" [value]="AthleteResultValue" matInput type="text"
                         placeholder="01:59.33" />
                     </mat-form-field>
-      
-                    <button type="button" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid"
+                    
+                    <app-loader-spinner *ngIf="isLoadingAddAthlet" color="black" height="100px"></app-loader-spinner>
+                    <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid"
                       mat-raised-button>Add</button>
                   </form>
                 </div>

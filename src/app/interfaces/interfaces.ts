@@ -190,8 +190,11 @@ export interface iTime {
 
 export interface EventDetails {
   event:any;
-  live:any;
   partitions:Partition[];
+  statement:{
+    participantMaxCount:number;
+    _id:string;
+  }
 }
 
 export interface Partition {

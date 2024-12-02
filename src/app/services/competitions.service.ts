@@ -17,8 +17,8 @@ export class CompetitionsService {
     return this._http.get<Competition[]>(`/consoleApi/event/planned`);
   }
 
-  getEventDetails(eventId:string){
-    return this._http.get<EventDetails>(`/consoleApi/event/details/${eventId}`)
+  getEventDetailsForCoach(eventId:string,coachId:string, teamId:string){
+    return this._http.get<EventDetails>(`/consoleApi/coach/${coachId}/teams/${teamId}/events/${eventId}/details`)
   }
 
   addEventPartiipant(coachId:string,teamId:string,eventId:string, participantId:string,raceId:string,time:iTime | null){

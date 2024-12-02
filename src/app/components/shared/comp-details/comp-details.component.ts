@@ -22,7 +22,7 @@ export class CompDetailsComponent {
   ) {
     const eventId = this.route.snapshot.paramMap.get('id') || '';
 
-    competitionService.getEventDetails(eventId).subscribe((event) => {
+    competitionService.getEventDetailsForCoach(eventId,'','').subscribe((event) => {
       this.event.set(event);
     });
   }
