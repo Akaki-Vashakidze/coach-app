@@ -25,7 +25,7 @@
             <a routerLink="/auth/confirmCode">
               <button mat-raised-button color="" type="button">back</button>
             </a>
-            <button mat-raised-button color="primary" type="submit">
+            <button [disabled]="!newPassForm.valid || newPassForm.value.password != newPassForm.value.password2" mat-raised-button color="primary" type="submit">
                 Change password
             </button>
         </div>

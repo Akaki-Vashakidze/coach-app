@@ -10,6 +10,7 @@ import { UserType } from '../../../enums/enums';
 import { SignInService } from '../../../services/sign-in.service';
 import { RecoveryContactComponent } from "../recovery-contact/recovery-contact.component";
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-recovery-user-id',
@@ -30,16 +31,33 @@ export class RecoveryUserIdComponent {
   onSubmit(): void {
     if (this.recoverPassWithIdForm.valid) {
       this.loader = true;
-      this._signInService.recoverPasswordinit({ ...this.recoverPassWithIdForm.value, userType: UserType.COACH }).subscribe(item => {
-        this._signInService.setUserRecoveryUuid(this.recoverPassWithIdForm.value.pidOrEmail)
-        this._signInService.setRecoveryContactInfo(item)
-        this.loader = false;
-        this._router.navigate(['/auth/sendCode'])
-      })
+      this._signInService
+        .recoverPasswordinit({ 
+          ...this.recoverPassWithIdForm.value, 
+          userType: UserType.COACH 
+        })
+        .pipe(
+          catchError((err) => {
+            this.loader = false;
+            if (err.status === 400) {
+              console.error('Bad Request (400):', err);
+            } else {
+              console.error('An unexpected error occurred:', err);
+            }
+            return throwError(() => err);
+          })
+        )
+        .subscribe((item) => {
+          this._signInService.setUserRecoveryUuid(this.recoverPassWithIdForm.value.pidOrEmail);
+          this._signInService.setRecoveryContactInfo(item);
+          this.loader = false;
+          this._router.navigate(['/auth/sendCode']);
+        });
     } else {
       console.error('Form is invalid');
     }
   }
+  
 
   hasError(controlName: string, error: string): boolean {
     const control = this.recoverPassWithIdForm.get(controlName);

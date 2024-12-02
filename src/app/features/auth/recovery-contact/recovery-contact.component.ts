@@ -9,6 +9,7 @@ import { RouterModule, Router } from '@angular/router';
 import { UserType } from '../../../enums/enums';
 import { SignInService } from '../../../services/sign-in.service';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-recovery-contact',
@@ -38,22 +39,37 @@ export class RecoveryContactComponent {
     return control?.hasError(error) && control?.touched || false;
   }
 
-  sendCode(){
-    let target = this.mobileForm.value.mobileNumber
-    let data = {
+  sendCode() {
+    const target = this.mobileForm.value.mobileNumber;
+    const data = {
       targetType: "phone",
       userType: "coach",
       target,
-      pidOrEmail:this.pidOrEmail,
-    }
+      pidOrEmail: this.pidOrEmail,
+    };
     this.loader = true;
-    this._signInService.recoverPasswordStart(data).subscribe(item => {
-      if(item.uuid){
-        this._signInService.setCoachUuid(item.uuid)
-        this.loader = false;
-        this._router.navigate(['/auth/confirmCode'])
-      }
-    })
+  
+    this._signInService
+      .recoverPasswordStart(data)
+      .pipe(
+        catchError((err) => {
+          this.loader = false;
+          if (err.status === 400) {
+            console.error('Bad Request (400):', err);
+          } else {
+            console.error('An unexpected error occurred:', err);
+          }
+          return throwError(() => err);
+        })
+      )
+      .subscribe((item) => {
+        if (item.uuid) {
+          this._signInService.setCoachUuid(item.uuid);
+          this.loader = false;
+          this._router.navigate(['/auth/confirmCode']);
+        }
+      });
   }
+  
   
 }

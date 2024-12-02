@@ -10,6 +10,7 @@ import { SignInService } from '../../../services/sign-in.service';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { MatIconModule} from '@angular/material/icon'
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-new-pass-recovery',
@@ -35,14 +36,35 @@ export class NewPassRecoveryComponent {
     return control?.hasError(error) && control?.touched || false;
   }
 
-  changePass(){
-    this.loader = true
-    this._signInService.recoverPasswordMandatoryChange(this.newPassForm.value.password).subscribe(item => {
-      if(item?.token) {
-        localStorage.setItem('access-token-l4-coach', item.token);
-        this.loader = false;
-          this._router.navigate(['/coach/dashboard'])
-      } 
-    })
+  changePass() {
+    this.loader = true;
+    if(this.newPassForm.value.password === this.newPassForm.value.password2) {
+      this._signInService
+      .recoverPasswordMandatoryChange(this.newPassForm.value.password)
+      .pipe(
+        catchError((err) => {
+          this.loader = false; 
+          if (err.status === 400) {
+            console.error('Bad Request (400):', err);
+            alert('Invalid password. Please follow the password requirements.');
+          } else {
+            console.error('An unexpected error occurred:', err);
+            alert('Something went wrong. Please try again later.');
+          }
+          return throwError(() => err);
+        })
+      )
+      .subscribe((item) => {
+        if (item?.token) {
+          localStorage.setItem('access-token-l4-coach', item.token);
+          this.loader = false;
+          this._router.navigate(['/coach/dashboard']);
+        }
+      });
+    } else {
+      this.snackbarService.openSnackBar('passwords does not match', 'ok')
+
+    }
   }
+  
 }

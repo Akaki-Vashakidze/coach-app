@@ -26,10 +26,10 @@ export class CompetitionsComponent {
     if(chosenTeam) {
       let teamId = chosenTeam._id
       competitionService.getTeamCompetitions(teamId,sessionService.userId).subscribe(item => {
-        this.competitions.set([...item,item[0]])
+          this.competitions.set(item)
       })
     } else {
-      this.competitions.set([])
+      this.competitions.set(null)
     }
   }
 

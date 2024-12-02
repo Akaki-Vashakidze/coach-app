@@ -9,6 +9,7 @@ import { SignInService } from '../../../services/sign-in.service';
 import { UserType } from '../../../enums/enums';
 import { Router, RouterModule } from '@angular/router';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -31,12 +32,25 @@ export class SignInComponent {
   onSubmit(): void {
     if (this.signInForm.valid) {
       this.loader = true;
-      this._signInService.login({...this.signInForm.value, userType:UserType.COACH}).subscribe(item => {
-        if(item?.data){
-          this.loader = false;
-          this._router.navigate(['/coach/dashboard'])
-        }
-      })
+  
+      this._signInService
+        .login({ ...this.signInForm.value, userType: UserType.COACH })
+        .pipe(
+          finalize(() => {
+            this.loader = false; // Ensures loader is turned off in both success and error cases
+          })
+        )
+        .subscribe(
+          (item) => {
+            console.log(item);
+            if (item?.data) {
+              this._router.navigate(['/coach/dashboard']);
+            }
+          },
+          (error) => {
+            console.error('Login failed:', error);
+          }
+        );
     } else {
       console.error('Form is invalid');
     }

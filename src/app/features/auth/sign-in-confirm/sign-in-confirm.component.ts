@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule, Router } from '@angular/router';
 import { SignInService } from '../../../services/sign-in.service';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in-confirm',
@@ -33,13 +34,31 @@ export class SignInConfirmComponent {
     return control?.hasError(error) && control?.touched || false;
   }
 
-  confirmCode(){
+  confirmCode() {
     this.loader = true;
-    this._signInService.recoverPasswordSubmit({...this.tokenCodeForm.value,uuid:this.coachUuid}).subscribe(item => {
-      if(item.result.data){
-        this.loader = false;
-        this._router.navigate(['/auth/newPass'])
-      }
-    })
+  
+    this._signInService
+      .recoverPasswordSubmit({
+        ...this.tokenCodeForm.value,
+        uuid: this.coachUuid,
+      })
+      .pipe(
+        catchError((err) => {
+          this.loader = false; 
+          if (err.status === 400) {
+            console.error('Bad Request (400):', err);
+          } else {
+            console.error('An unexpected error occurred:', err);
+          }
+          return throwError(() => err);
+        })
+      )
+      .subscribe((item) => {
+        if (item.result?.data) {
+          this.loader = false;
+          this._router.navigate(['/auth/newPass']);
+        }
+      });
   }
+  
 }
