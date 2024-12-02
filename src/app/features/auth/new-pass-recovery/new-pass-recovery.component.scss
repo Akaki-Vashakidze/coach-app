@@ -1,0 +1,64 @@
+.auth-card {
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  mat-form-field {
+   width: 100%;
+  }
+  
+  .actionDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .actionDiv button {
+    width: 100%;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phoneNum {
+    padding-bottom: 10px;
+  }
+
+  .phoneNum {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .auth-card ::ng-deep .mat-mdc-form-field-infix {
+    display: flex !important;
+  }
+
+  mat-icon {
+    cursor: pointer;
+  }
+
+  .auth-card {
+    width: 400px;
+  }
+  
+  @media (max-width:740px){
+    .auth-card {
+      width: 300px;
+    }
+  }

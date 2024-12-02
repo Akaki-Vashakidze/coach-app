@@ -1,0 +1,17 @@
+<div class="confirm-dialog">
+  <h2 mat-dialog-title>
+    {{ title }}
+  </h2>
+  <div mat-dialog-actions class="confirm-dialog__actions">
+    <button mat-raised-button (click)="onDismiss()">
+      {{ 'no' }}
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onConfirm()"
+    >
+      {{ 'yes' }}
+    </button>
+  </div>
+</div>

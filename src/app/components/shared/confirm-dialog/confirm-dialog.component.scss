@@ -1,0 +1,13 @@
+.confirm-dialog {
+    padding: 20px;
+    text-align: center;
+    &__actions {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+
+        & > * {
+            flex-grow: 1;
+        }
+    }
+}

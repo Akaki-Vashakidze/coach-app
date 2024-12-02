@@ -1,0 +1,17 @@
+.label {
+    &__name {
+        margin-bottom: 5px;
+        color: gray;
+        font-size: 12px;
+
+    }
+    &__value {
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        font-weight: normal;
+    }
+    &__icon {
+         margin-left: 5px;
+    }
+}

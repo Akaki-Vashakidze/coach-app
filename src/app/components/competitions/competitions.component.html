@@ -1,0 +1,20 @@
+
+<app-loader-spinner *ngIf="!competitions()" color="black" height="500px"></app-loader-spinner>
+
+<div class="compContainer">
+    <mat-card class="compCardCont" *ngFor="let competition of competitions()">
+        <div class="compCard">
+            <app-label label="Title" [value]="competition.title"></app-label>
+            <app-label label="Start_date" [value]="competition.startDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="reg_start_date" [value]="competition.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="reg_end_date" [value]="competition.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
+        </div>
+
+        <div class="actions">
+            <button [routerLink]="'/coach/competition/details/' + competition._id" mat-raised-button>details</button>
+            <div [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement)">
+                <button [routerLink]="'/coach/competition/registration/' + (competition.statement.hasActiveStatement ? competition.statement.participantMaxCount : '0') + '/' + competition._id" [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)" mat-raised-button>register</button>
+            </div>
+        </div>
+    </mat-card>
+</div>

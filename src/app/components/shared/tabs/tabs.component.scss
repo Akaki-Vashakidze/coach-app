@@ -1,0 +1,11 @@
+.tabsCont {
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+    border-bottom: 1px solid var(--blue1);
+}
+
+.tabsCont ::ng-deep .mat-mdc-tab-labels {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+}

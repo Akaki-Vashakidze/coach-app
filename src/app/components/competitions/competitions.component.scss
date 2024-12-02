@@ -1,0 +1,57 @@
+.compCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.compCardCont {
+    width: 350px;
+    padding: 20px;
+}
+
+.compContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.compTitle {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.registration {
+    font-weight: 500;
+}
+
+.regDates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.actions button {
+    margin: 8px;
+}
+@media (max-width:740px){
+    .compContainer{
+        flex-direction: column;
+    }
+    .compCardCont {
+        margin: auto;
+    }
+}
+
+.regEndDate {
+    color: red;
+}

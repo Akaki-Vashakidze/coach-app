@@ -1,0 +1,4 @@
+<app-tabs (onChange)="onTabsChange($event)" [chosenIndex]="tabChosenIndex" [tabs]="dashboardTabs"></app-tabs>
+<div class="dashboardCont">
+    <router-outlet></router-outlet>
+</div>

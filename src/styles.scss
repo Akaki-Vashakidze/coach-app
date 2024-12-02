@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./fonts.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --banner-text-color-dark: #37557f;
+    --p-card-color: linear-gradient(#ddf4ff, #DCF5FF, #ddf5ff);
+    --accent-color: #e74c3c;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+  
+    --dark-blue1: #002155;
+    --dark-blue2: #0A3069;
+    --dark-blue3: #033D8B;
+    --dark-blue4: #0550AE;
+  
+    --blue1: #0969DA;
+    --blue2: #218BFF;
+    --blue3: #54AEFF;
+    --blue4: #80CCFF;
+  
+    --light-blue1: #B6E3FF;
+    --light-blue2: #DDF4FF;
+    --light-blue3: #F2F8FA;
+  
+    --font-Blue: #002155;
+  }
+
+  app-header, app-competitions , app-athletes{
+    width: 100%;
+  }
+
+  app-competitions {
+    padding: 10px;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  .GeoFont .headerFont {
+    font-family: "Georgian Uppercase Bold" !important;
+    margin: 0;
+  }
+  
+  .GeoFont .normalFont {
+    font-family: "Georgian Lowercase Normal" !important;
+  }
+  
+  .EngFont .headerFont {
+    font-family: "Arial" !important;
+    font-weight: bold;
+  }
+  
+  .EngFont .normalFont {
+    font-family: "Arial" !important;
+    font-weight: normal;
+  }
+
+  :root {
+    --banner-text-color-dark: #37557f;
+    --p-card-color: linear-gradient(#ddf4ff, #DCF5FF, #ddf5ff);
+    --accent-color: #e74c3c;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+  
+    --dark-blue1: #002155;
+    --dark-blue2: #0A3069;
+    --dark-blue3: #033D8B;
+    --dark-blue4: #0550AE;
+  
+    --blue1: #0969DA;
+    --blue2: #218BFF;
+    --blue3: #54AEFF;
+    --blue4: #80CCFF;
+  
+    --light-blue1: #B6E3FF;
+    --light-blue2: #DDF4FF;
+    --light-blue3: #F2F8FA;
+  
+    --font-Blue: #002155;
+  }  

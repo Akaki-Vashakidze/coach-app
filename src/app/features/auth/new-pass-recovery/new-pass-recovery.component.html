@@ -1,0 +1,35 @@
+<mat-card *ngIf="!loader"  class="auth-card">
+    <form [formGroup]="newPassForm" class="form" (ngSubmit)="changePass()" novalidate>
+        <h2>New Password</h2>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>New password</mat-label>
+            <input matInput [type]="password1Open ? 'text' : 'password'" formControlName="password" placeholder="password" />
+            <mat-icon (click)="password1Open = !password1Open">remove_red_eye</mat-icon>
+            <mat-error *ngIf="hasError('password', 'required')">number is required.</mat-error>
+            <mat-error *ngIf="hasError('password', 'minlength')">
+                Password must be 8 at least characters long
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Repeat Password</mat-label>
+            <input matInput [type]="password2Open ? 'text' : 'password'" formControlName="password2" placeholder="repeat" />
+            <mat-icon (click)="password2Open = !password2Open">remove_red_eye</mat-icon>
+            <mat-error *ngIf="hasError('password2', 'required')">number is required.</mat-error>
+            <mat-error *ngIf="hasError('password2', 'minlength')">
+                Password must be 8 at least characters long
+            </mat-error>
+        </mat-form-field>
+
+        <div class="actionDiv">
+            <a routerLink="/auth/confirmCode">
+              <button mat-raised-button color="" type="button">back</button>
+            </a>
+            <button mat-raised-button color="primary" type="submit">
+                Change password
+            </button>
+        </div>
+    </form>
+</mat-card>
+
+<app-loader-spinner *ngIf="loader" color="black" height="500px"></app-loader-spinner>

@@ -1,0 +1,24 @@
+<div class="label">
+  <p class="label__name">
+    {{ label  }}
+  </p>
+  <p class="label__value">
+    @if (isTokenHidden) {
+      {{ value | dots }}
+    } @else if (isShortened) {
+      {{ value  }}
+    } @else {
+      {{ value ?? '-' }}
+    }
+    @if (hasMask) {
+      <span (click)="toggleDots()"
+        ><mat-icon class="label__icon">remove_red_eye</mat-icon></span
+      >
+    }
+    @if (isShortened || canCopy) {
+      <span (click)="copy(value)"
+        ><mat-icon class="label__icon">file_copy</mat-icon></span
+      >
+    }
+  </p>
+</div>

@@ -1,0 +1,17 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let athlete of athletes()">
+      <mat-expansion-panel-header>
+        <div class="header-content">
+          <div class="title">
+            <span class="header-title">{{athlete.athlete?.lastName + ' ' + athlete?.athlete?.firstName}}</span>
+            <span class="header-subtitle">{{athlete?.athlete?.gender}}</span>
+          </div>
+          <span class="date">{{athlete?.athlete?.birthDate | date : 'yyyy'}}</span>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="panel-content">
+        <p>{{'athlete info'}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <app-loader-spinner *ngIf="!athletes()" color="black" height="500px"></app-loader-spinner>

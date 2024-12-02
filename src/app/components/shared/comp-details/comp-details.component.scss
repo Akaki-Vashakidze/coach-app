@@ -1,0 +1,23 @@
+.card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width:740px){
+    .card {
+        padding: 10px;
+    }
+}
+
+.title {
+    font-weight: 600;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+}

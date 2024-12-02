@@ -1,0 +1,179 @@
+.races {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.race {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.regComponent {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 10px;
+    gap: 10px;
+}
+
+.athletes {
+    height: 100%;
+}
+
+.addAtlete {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: left;
+    margin: 10px 0px;
+}
+
+.addPartitcipantsCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+}
+
+.bkOn {
+    background-color: var(--light-blue1)!important;
+}
+
+.registeredAthletesList {
+    border-bottom: 1px solid var(--light-blue1);
+    width: 100%;
+    padding: 15px 0px;
+}
+
+.athleteInfoRegHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 5px;
+    border-bottom: 1px solid rgb(176, 174, 174);
+}
+
+.athleteInfoReg {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 3px;
+}
+
+.add_athlete_form {
+    padding: 15px 0px;
+}
+
+.add_athlete_form ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none!important;
+}
+
+.add_athlete_form {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+  }
+  
+  .add_athlete_form mat-form-field {
+    flex: 1; 
+    margin: 0;
+  }
+  
+  .add_athlete_form button {
+    height: 56px;
+    line-height: 56px;
+    min-width: 90px; 
+    font-size: 16px;
+    padding: 0 8px; 
+  }
+
+  .addAthleteCont {
+    padding: 10px;
+  }
+
+  .regConainerFull {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .allRegisteredAthletes {
+    padding: 10px!important;
+    display: flex;
+    align-items: center;
+  }
+
+  .allRegisteredAthletes_header {
+    padding: 10px;
+  }
+
+  .info {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 10px 0px;
+  }
+
+  .tabTitleCont {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dataTab {
+    color: gray;
+    padding-left: 10px;
+  }
+
+  .regConainerFull ::ng-deep .mat-mdc-tab-labels {
+    border-bottom: 1px solid var(--light-blue1);
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .header-content {
+    width: 100%;
+    padding-right: 20px;
+  }
+
+  .header-subtitle {
+    position: relative;
+    top: 10px;
+  }
+
+  .allRegisteredAthletes ::ng-deep .mat-expansion-panel-header {
+    height: 100% !important;
+  }
+
+  .allRegisteredAthletes ::ng-deep .mat-expansion-panel-body {
+    padding: 12px 24px;
+  }
+
+  .athletesLeftToRegister{
+    padding: 20px;
+  }
+
+  @media (max-width:740px){
+    .regComponent{
+        display: flex;
+        flex-direction: column;
+    }
+    .add_athlete_form {
+        display: flex;
+        flex-direction: column;
+    }
+    .info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    .regConainerFull ::ng-deep .mdc-tab__text-label {
+        display: flex;
+        flex-direction: column !important;
+      }
+      .dataTab {
+        padding-top: 5px;
+      }
+  }
