@@ -6,9 +6,9 @@
     <mat-card class="compCardCont" *ngFor="let competition of competitions()">
         <div class="compCard">
             <app-label label="Title" [value]="competition?.title"></app-label>
-            <app-label label="Start_date" [value]="competition?.startDate | date: 'dd-MM-yyy'"></app-label>
             <app-label label="reg_start_date" [value]="competition?.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
-            <app-label label="reg_end_date" [value]="competition?.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label style="color: red;" label="reg_end_date" [value]="competition?.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="Start_date" [value]="competition?.startDate | date: 'dd-MM-yyy'"></app-label>
         </div>
 
         <div class="actions">

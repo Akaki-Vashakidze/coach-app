@@ -62,7 +62,7 @@
 }
 
 .add_athlete_form {
-    padding: 15px 0px;
+    padding-top: 15px;
 }
 
 .add_athlete_form ::ng-deep .mat-mdc-form-field-subscript-wrapper {
@@ -71,6 +71,7 @@
 
 .add_athlete_form {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 8px; 
   }
@@ -154,7 +155,12 @@
   }
 
   .athletesLeftToRegister{
-    padding: 20px;
+    padding-top: 15px;
+  }
+
+  .formFieldsCont {
+    display: flex;
+    flex-direction: row;
   }
 
   @media (max-width:740px){
@@ -176,5 +182,10 @@
       }
       .dataTab {
         padding-top: 5px;
+      }
+      .formFieldsCont {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
   }

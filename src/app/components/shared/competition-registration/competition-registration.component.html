@@ -7,7 +7,7 @@
       <div class="info">
         <app-label label="მისამართი" [value]="event()?.event.address"></app-label>
         <app-label label="რეგისტრაციის დაწყება" [value]="event()?.event.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
-        <app-label label="რეგისტრაციის დამთავრება" [value]="event()?.event.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
+        <app-label style="color: red;" label="რეგისტრაციის დამთავრება" [value]="event()?.event.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
         <app-label label="შეჯიბრის დაწყება" [value]="event()?.event.startDate | date: 'dd-MM-yyy'"></app-label>
         <app-label label="სპორცმენების რაოდენობა" [value]="statement"></app-label>
       </div>
@@ -50,27 +50,31 @@
                 <div class="addAthleteCont">
                   <div *ngIf="!isLoadingAddAthlet"  style="text-align: center; padding: 5px;">Add Athlete</div>
                   <form [formGroup]="registerAthleteForm" class="add_athlete_form">
-                    <mat-form-field *ngIf="!isLoadingAddAthlet" class="example-full-width" appearance="outline">
-                      <mat-label>athlete</mat-label>
-                      <input type="text" placeholder="Pick one" matInput formControlName="athleteInfo"
-                        [matAutocomplete]="auto" />
-                      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
-                        (optionSelected)="onOptionSelected($event)">
-                        <mat-option *ngFor="let option of filteredOptions()" [value]="option">
-                          {{ option?.member?.athlete?.lastName + ' ' + option?.member?.athlete?.firstName }}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-      
-                    <mat-form-field *ngIf="!isLoadingAddAthlet" class="full-width">
-                      <mat-label>result</mat-label>
-                      <input formControlName="athleteResult" maxlength="8" [value]="AthleteResultValue" matInput type="text"
-                        placeholder="01:59.33" />
-                    </mat-form-field>
-                    
-                    <app-loader-spinner *ngIf="isLoadingAddAthlet" color="black" height="100px"></app-loader-spinner>
-                    <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid"
-                      mat-raised-button>Add</button>
+                    <div class="formFieldsCont">
+                      <mat-form-field *ngIf="!isLoadingAddAthlet" class="example-full-width" appearance="outline">
+                        <mat-label>athlete</mat-label>
+                        <input type="text" placeholder="Pick one" matInput formControlName="athleteInfo"
+                          [matAutocomplete]="auto" />
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                          (optionSelected)="onOptionSelected($event)">
+                          <mat-option *ngFor="let option of filteredOptions()" [value]="option">
+                            {{ option?.member?.athlete?.lastName + ' ' + option?.member?.athlete?.firstName }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+        
+                      <mat-form-field *ngIf="!isLoadingAddAthlet" class="full-width">
+                        <mat-label>result</mat-label>
+                        <input formControlName="athleteResult" maxlength="8" [value]="AthleteResultValue" matInput type="text"
+                          placeholder="01:59.33" />
+                      </mat-form-field>
+                      
+                      <app-loader-spinner *ngIf="isLoadingAddAthlet" color="black" height="100px"></app-loader-spinner>
+                      <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid || (statement - countRegisteredAthletes()) == 0"
+                        mat-raised-button>Add</button>
+                    </div>
+                      <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you can register '}}{{ statement - countRegisteredAthletes()}}{{' more athlete'}}</div>
+                      <div *ngIf="statement - countRegisteredAthletes() == 0" class="athletesLeftToRegister" style="color: red;">{{'you can not register more ahletes '}}</div>
                   </form>
                 </div>
               </div>
@@ -114,7 +118,5 @@
       </mat-accordion>
 
     </div>
-    <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you can register '}}{{ statement - countRegisteredAthletes()}}{{' more athlete'}}</div>
-    <div *ngIf="statement - countRegisteredAthletes() == 0" class="athletesLeftToRegister">{{'you can not register more ahletes '}}</div>
   </mat-card>
 </div>
