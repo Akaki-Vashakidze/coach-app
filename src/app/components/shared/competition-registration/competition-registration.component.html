@@ -73,7 +73,7 @@
                       <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid || (statement - countRegisteredAthletes()) == 0"
                         mat-raised-button>{{'Add' | translate}}</button>
                     </div>
-                      <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you can register '}}{{ statement - countRegisteredAthletes()}}{{' more athlete'}}</div>
+                      <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you can register '}}{{statement ? statement - countRegisteredAthletes() : '0'}}{{' more athlete'}}</div>
                       <div *ngIf="statement - countRegisteredAthletes() == 0" class="athletesLeftToRegister" style="color: red;">{{'you can not register more ahletes '}}</div>
                   </form>
                 </div>
