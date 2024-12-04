@@ -115,5 +115,7 @@
   "end_date":"End date",
   "statement_not_fount":"Payment required before swimmer registration",
   "deadline_done":"Submission deadline has ended",
-  "pick_one":"choose athlete"
+  "pick_one":"choose athlete",
+  "you_can_register":"You can register",
+  "more_athlete":"more athletes"
 }
