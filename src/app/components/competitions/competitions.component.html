@@ -10,16 +10,15 @@
             <app-label style="color: red;" label="reg_end_date" [value]="competition?.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
             <app-label label="Start_date" [value]="competition?.startDate | date: 'dd-MM-yyy'"></app-label>
         </div>
-
         <div class="actions">
             <button [routerLink]="'/coach/competition/details/' + competition?._id" mat-raised-button>{{'details' | translate}}</button>
             <div [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement) | translate">
                 <button [routerLink]="'/coach/competition/registration/' + (competition?.statement?.hasActiveStatement ? competition?.statement?.participantMaxCount : '0') + '/' + competition?._id" 
-               
+                [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)"
                  mat-raised-button>{{'register' | translate}}</button>
             </div>
         </div>
+        <div *ngIf="!competition?.statement?.hasActiveStatement" class="normalFont" style="color: red; text-align: center; padding-top: 10px;">{{'statement_not_fount' | translate}}</div>
     </mat-card>
 </div>
 
-<!-- [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)" -->
