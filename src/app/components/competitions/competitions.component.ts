@@ -54,7 +54,7 @@ export class CompetitionsComponent {
   }
 
   matToolTipSet(regEndDate: Date, hasActiveStatement:boolean | undefined){
-    if(!hasActiveStatement) return 'Please pay for the competition';
+    if(!hasActiveStatement) return 'statement_not_fount';
    if(this.canRegistrate(regEndDate,hasActiveStatement))  {
     return ''
    } else {

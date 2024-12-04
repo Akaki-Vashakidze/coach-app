@@ -1,6 +1,5 @@
 <div *ngIf="event()" class="eventDetCont">
     <mat-card class="card">
-        <div class="title">{{event()?.event.title}}</div>
         <div class="info">
             <!-- <app-label
             [shortened]="true"
@@ -8,12 +7,13 @@
             label="id"
             [value]="event()?.event?.title"
           ></app-label> -->
+            <app-label label="Title" [value]="event()?.event.title"></app-label>
             <app-label label="description" [value]="event()?.event?.description"></app-label>
             <app-label label="address" [value]="event()?.event?.address"></app-label>
-            <app-label label="startDate" [value]="event()?.event?.startDate | date: 'dd-MM-yyy'"></app-label>
-            <app-label label="endDate" [value]="event()?.event?.endDate | date: 'dd-MM-yyy'"></app-label>
-            <app-label label="registrationStartDate" [value]="event()?.event?.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
-            <app-label label="registrationEndDate" [value]="event()?.event?.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="Start_date" [value]="event()?.event?.startDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="end_date" [value]="event()?.event?.endDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="reg_start_date" [value]="event()?.event?.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
+            <app-label label="reg_end_date" [value]="event()?.event?.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
         </div>
     </mat-card>
 </div>

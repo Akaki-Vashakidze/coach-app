@@ -100,5 +100,20 @@
   "reg_end_date":"Registration end",
   "Start_date":"Competition start",
   "details":"Details",
-  "register":"Register"
+  "register":"Register",
+  "athlete_number":"Athletes amount",
+  "choose_race":"Please choose a race",
+  "registered_athletes":"Registered athletes",
+  "athlletes_note_registered":"You have not registered any athlete.",
+  "no_races_yet":"There are no races yet",
+  "races":"races",
+  "Action":"Action",
+  "no_athlete":"No athletes registered",
+  "Add":"Add",
+  "address":"Address",
+  "description":"Description",
+  "end_date":"End date",
+  "statement_not_fount":"Payment required before swimmer registration",
+  "deadline_done":"Submission deadline has ended",
+  "pick_one":"choose athlete"
 }

@@ -21,6 +21,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { LabelComponent } from '../label/label.component';
 import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-competition-registration',
@@ -38,6 +40,7 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     MatExpansionModule,
     LabelComponent,
+    TranslateModule
   ],
   templateUrl: './competition-registration.component.html',
   styleUrls: ['./competition-registration.component.scss'],
@@ -71,6 +74,7 @@ export class CompetitionRegistrationComponent implements OnInit {
     private sessionService:SessionService,
     private convertItimeService:ConvertItimeService,
     private fb: FormBuilder,
+    private snackBarService:SnackbarService
   ) {
      this.eventId = this.route.snapshot.paramMap.get('id') || '';
      this.registerAthleteForm = this.fb.group({
@@ -83,7 +87,12 @@ export class CompetitionRegistrationComponent implements OnInit {
     this.registerAthleteForm.get('athleteResult')?.disable();
     competitionService.getEventDetailsForCoach(this.eventId,this.coachId,this.teamId).subscribe((event) => {
       this.event.set(event);
-      this.statement = event.statement.participantMaxCount;
+      if(event?.statement?.participantMaxCount) {
+        this.statement = event?.statement?.participantMaxCount;
+      } else {
+        this.snackBarService.openSnackBar('statement_not_fount', 'ok');
+      }
+    
     });
   }
 
@@ -167,13 +176,12 @@ export class CompetitionRegistrationComponent implements OnInit {
           } else {
             alert('Something went wrong. Please try again later.');
           }
-          return throwError(() => err); // Optionally rethrow error for further handling
+          return throwError(() => err);
         })
       )
       .subscribe((item) => {
         if (item.athlete) {
-          // Success response handling
-          this.isLoadingAddAthlet = false; // Reset loader
+          this.isLoadingAddAthlet = false; 
           this.clearForm();
           this.getRegisteredAthletes();
           this.getAllRegisteredAthletes();

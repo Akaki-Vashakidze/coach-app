@@ -1,7 +1,7 @@
 
 <app-loader-spinner *ngIf="!competitions()" color="black" height="500px"></app-loader-spinner>
 
-<div *ngIf="competitions()?.length == 0" style="text-align: center;">{{'no_competitions'}}</div>
+<div *ngIf="competitions()?.length == 0" style="text-align: center;">{{'no_competitions' | translate}}</div>
 <div *ngIf="competitions()" class="compContainer">
     <mat-card class="compCardCont" *ngFor="let competition of competitions()">
         <div class="compCard">
@@ -13,9 +13,13 @@
 
         <div class="actions">
             <button [routerLink]="'/coach/competition/details/' + competition?._id" mat-raised-button>{{'details' | translate}}</button>
-            <div [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement)">
-                <button [routerLink]="'/coach/competition/registration/' + (competition?.statement?.hasActiveStatement ? competition?.statement?.participantMaxCount : '0') + '/' + competition?._id" [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)" mat-raised-button>{{'register' | translate}}</button>
+            <div [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement) | translate">
+                <button [routerLink]="'/coach/competition/registration/' + (competition?.statement?.hasActiveStatement ? competition?.statement?.participantMaxCount : '0') + '/' + competition?._id" 
+               
+                 mat-raised-button>{{'register' | translate}}</button>
             </div>
         </div>
     </mat-card>
 </div>
+
+<!-- [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)" -->
