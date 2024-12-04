@@ -4,7 +4,7 @@
         <div class="header-content">
           <div class="title">
             <span class="header-title">{{athlete.athlete?.lastName + ' ' + athlete?.athlete?.firstName}}</span>
-            <span class="header-subtitle">{{athlete?.athlete?.gender}}</span>
+            <span class="header-subtitle">{{athlete?.athlete?.gender || '' | translate}}</span>
           </div>
           <span class="date">{{athlete?.athlete?.birthDate | date : 'yyyy'}}</span>
         </div>

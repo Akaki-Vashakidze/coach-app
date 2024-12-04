@@ -5,11 +5,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { Athlete, TeamMembers } from '../../../interfaces/interfaces';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-athletes',
   standalone: true,
-  imports: [CommonModule,MatExpansionModule, MatIconModule, LoaderSpinnerComponent],
+  imports: [CommonModule,MatExpansionModule, TranslateModule, MatIconModule, LoaderSpinnerComponent],
   templateUrl: './athletes.component.html',
   styleUrl: './athletes.component.scss'
 })

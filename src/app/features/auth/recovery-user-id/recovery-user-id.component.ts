@@ -11,11 +11,12 @@ import { SignInService } from '../../../services/sign-in.service';
 import { RecoveryContactComponent } from "../recovery-contact/recovery-contact.component";
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { catchError, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recovery-user-id',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule, RouterModule, RecoveryContactComponent],
+  imports: [CommonModule,TranslateModule, ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule, RouterModule, RecoveryContactComponent],
   templateUrl: './recovery-user-id.component.html',
   styleUrl: './recovery-user-id.component.scss'
 })

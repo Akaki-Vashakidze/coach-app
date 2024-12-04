@@ -10,12 +10,13 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { DotsPipe } from './dots.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 type PRIMITIVE = string | undefined | number | null | boolean;
 @Component({
   selector: 'app-label',
   standalone: true,
-  imports: [MatIconModule, DotsPipe],
+  imports: [MatIconModule, DotsPipe, TranslateModule],
   templateUrl: './label.component.html',
   styleUrl: './label.component.scss',
   encapsulation: ViewEncapsulation.Emulated,

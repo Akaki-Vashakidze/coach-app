@@ -10,12 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LabelComponent } from '../shared/label/label.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-competitions',
   standalone: true,
-  imports: [CommonModule, LoaderSpinnerComponent, RouterModule, LabelComponent ,MatCardModule, MatButtonModule, MatTooltipModule],
+  imports: [CommonModule,TranslateModule,LoaderSpinnerComponent, RouterModule, LabelComponent ,MatCardModule, MatButtonModule, MatTooltipModule],
   templateUrl: './competitions.component.html',
   styleUrl: './competitions.component.scss'
 })

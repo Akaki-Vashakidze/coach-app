@@ -10,11 +10,12 @@ import { UserType } from '../../../enums/enums';
 import { Router, RouterModule } from '@angular/router';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { finalize } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LoaderSpinnerComponent,MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
+  imports: [CommonModule,TranslateModule, ReactiveFormsModule, LoaderSpinnerComponent,MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })

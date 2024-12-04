@@ -10,11 +10,12 @@ import { UserType } from '../../../enums/enums';
 import { SignInService } from '../../../services/sign-in.service';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { catchError, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recovery-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
+  imports: [CommonModule, TranslateModule,ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
   templateUrl: './recovery-contact.component.html',
   styleUrl: './recovery-contact.component.scss'
 })

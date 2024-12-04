@@ -11,11 +11,12 @@ import { SnackbarService } from '../../../services/snackbar.service';
 import { MatIconModule} from '@angular/material/icon'
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { catchError, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-pass-recovery',
   standalone: true,
-  imports: [CommonModule,MatIconModule,LoaderSpinnerComponent, ReactiveFormsModule, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
+  imports: [CommonModule,MatIconModule,TranslateModule,LoaderSpinnerComponent, ReactiveFormsModule, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
   templateUrl: './new-pass-recovery.component.html',
   styleUrl: './new-pass-recovery.component.scss'
 })

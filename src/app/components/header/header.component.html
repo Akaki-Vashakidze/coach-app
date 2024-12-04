@@ -1,6 +1,6 @@
 <div class="headerCont">
     <div class="title" *ngIf="userData" routerLink="/coach/dashboard">{{'Coach' | translate}}</div>
-    <div class="title" *ngIf="!userData" routerLink="/coach/dashboard">{{ 'Please sign in' | translate}}</div>
+    <div class="title" *ngIf="!userData" routerLink="/coach/dashboard">{{ 'Please_sign_in' | translate}}</div>
     <div class="info">
         <div *ngIf="needUserInfo" class="username padding5">{{ userData ? userData.user.lastName + ' ' + userData.user.firstName : ''}}</div>
         <div *ngIf="userData && needUserInfo && teams().length > 0" class="teamsDropdownMenu padding5 gapLane" [matMenuTriggerFor]="teamsMenu">

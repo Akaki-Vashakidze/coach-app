@@ -9,11 +9,12 @@ import { RouterModule, Router } from '@angular/router';
 import { SignInService } from '../../../services/sign-in.service';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { catchError, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-in-confirm',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
+  imports: [CommonModule, TranslateModule,ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
   templateUrl: './sign-in-confirm.component.html',
   styleUrl: './sign-in-confirm.component.scss'
 })
@@ -56,6 +57,7 @@ export class SignInConfirmComponent {
       .subscribe((item) => {
         if (item.result?.data) {
           this.loader = false;
+          
           this._router.navigate(['/auth/newPass']);
         }
       });

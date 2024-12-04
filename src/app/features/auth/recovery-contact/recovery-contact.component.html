@@ -1,13 +1,13 @@
 <mat-card *ngIf="!loader" class="auth-card">
     <form [formGroup]="mobileForm" class="form" (ngSubmit)="sendCode()" novalidate>
-        <h2>Send Message</h2>
+        <h2>{{'send_code' | translate}}</h2>
         <div class="phoneNum">
-            <div class="labelNum">Mobile:</div>
+            <div class="labelNum">{{'mobile_num' | translate}}</div>
             <div>{{userContactInfo?.phone}}</div>
-        </div>
+        </div>  
         <mat-form-field appearance="outline" class="full-width recInputMat">
-            <mat-label>Enter Mobile number</mat-label>
-            <input matInput type="text" formControlName="mobileNumber" placeholder="Mobile" />
+            <mat-label>{{'mobile' | translate}}</mat-label>
+            <input matInput type="text" formControlName="mobileNumber" [placeholder]="'mobile' | translate" />
             <mat-error *ngIf="hasError('mobileNumber', 'required')">number is required.</mat-error>
             <mat-error *ngIf="hasError('mobileNumber', 'minlength')">
                 Mobile number must be 9 characters long.
@@ -16,10 +16,10 @@
 
         <div class="actionDiv">
             <a routerLink="/auth/recoveryId">
-              <button mat-raised-button color="" type="button">back</button>
+              <button mat-raised-button color="" type="button">{{'back' | translate}}</button>
             </a>
             <button mat-raised-button color="primary" type="submit">
-                send code
+                {{'send' | translate}}
             </button>
         </div>
     </form>
