@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CompetitionsService } from '../../../services/competitions.service';
 import { Athlete, EventDetails, Race, TeamAthleteQualifications } from '../../../interfaces/interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -40,7 +40,8 @@ import { SnackbarService } from '../../../services/snackbar.service';
     MatButtonModule,
     MatExpansionModule,
     LabelComponent,
-    TranslateModule
+    TranslateModule,
+    RouterModule
   ],
   templateUrl: './competition-registration.component.html',
   styleUrls: ['./competition-registration.component.scss'],
@@ -263,5 +264,14 @@ deleteRegisteredAthlete(athlete:any){
 
   displayFn(option: TeamAthleteQualifications): string {
     return option ? `${option?.member?.athlete?.lastName} ${option?.member?.athlete?.firstName}` : '';
+  }
+
+  getFormattedDate(): string {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');   // Add leading zero if day < 10
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Get month (0-indexed, so add 1)
+    const year = today.getFullYear();
+    
+    return `${day}.${month}.${year}`;
   }
 }

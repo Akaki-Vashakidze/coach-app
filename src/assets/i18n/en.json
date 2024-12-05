@@ -123,5 +123,6 @@
   "can_not_register_athlete":"The limit for registering athletes has been reached.",
   "yes":"Yes",
   "no":"No",
-  "do_you_want_delete":"Do you want to delete?"
+  "do_you_want_delete":"Do you want to delete?",
+  "comp_registration":"Registration"
 }

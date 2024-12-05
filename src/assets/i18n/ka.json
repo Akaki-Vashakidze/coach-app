@@ -123,6 +123,7 @@
   "can_not_register_athlete":"სპორცმენების დარეგისტრირების ლიმიტი ამოწურულია",
   "yes":"კი",
   "no":"არა",
-  "do_you_want_delete":"ნამდვილად გსურთ წაშლა?"
+  "do_you_want_delete":"ნამდვილად გსურთ წაშლა?",
+  "comp_registration":"რეგისტრაცია"
 
 }
