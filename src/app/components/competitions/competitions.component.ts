@@ -58,7 +58,7 @@ export class CompetitionsComponent {
    if(this.canRegistrate(regEndDate,hasActiveStatement))  {
     return ''
    } else {
-    return 'Competition registration deadline time is done'
+    return 'deadline_done'
    }
   }
 }

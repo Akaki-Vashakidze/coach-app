@@ -107,7 +107,7 @@
   "athlletes_note_registered":"You have not registered any athlete.",
   "no_races_yet":"There are no races yet",
   "races":"races",
-  "Action":"Action",
+  "action":"Action",
   "no_athlete":"No athletes registered",
   "Add":"Add",
   "address":"Address",
@@ -117,5 +117,11 @@
   "deadline_done":"Submission deadline has ended",
   "pick_one":"choose athlete",
   "you_can_register":"You can register",
-  "more_athlete":"more athletes"
+  "more_athlete":"more athletes",
+  "add_athlete":"Add athlete",
+  "delete":"Delete",
+  "can_not_register_athlete":"The limit for registering athletes has been reached.",
+  "yes":"Yes",
+  "no":"No",
+  "do_you_want_delete":"Do you want to delete?"
 }

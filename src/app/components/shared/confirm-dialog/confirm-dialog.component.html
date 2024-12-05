@@ -1,17 +1,17 @@
 <div class="confirm-dialog">
   <h2 mat-dialog-title>
-    {{ title }}
+    {{ title | translate}}
   </h2>
   <div mat-dialog-actions class="confirm-dialog__actions">
     <button mat-raised-button (click)="onDismiss()">
-      {{ 'no' }}
+      {{ 'no' | translate}}
     </button>
     <button
       mat-raised-button
       color="primary"
       (click)="onConfirm()"
     >
-      {{ 'yes' }}
+      {{ 'yes' | translate}}
     </button>
   </div>
 </div>
