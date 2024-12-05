@@ -126,5 +126,6 @@
   "do_you_want_delete":"ნამდვილად გსურთ წაშლა?",
   "comp_registration":"რეგისტრაცია",
   "team_details":"გუნდი",
-  "log_out":"გასვლა"
+  "log_out":"გასვლა",
+  "code_sent_mobile":"კოდი გამოგზავნილია მობილურზე"
 }

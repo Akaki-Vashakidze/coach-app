@@ -126,5 +126,6 @@
   "do_you_want_delete":"Do you want to delete?",
   "comp_registration":"Registration",
   "team_details":"Team Details",
-  "log_out":"Log out"
+  "log_out":"Log out",
+  "code_sent_mobile":"Code is sent on mobile number"
 }

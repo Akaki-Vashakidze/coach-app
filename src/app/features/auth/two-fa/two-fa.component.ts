@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card'
@@ -20,13 +20,14 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './two-fa.component.scss'
 })
 export class TwoFaComponent {
-
+  mobilePhone = signal<string>('');
   loader!:boolean;
   submitForm!: FormGroup;
   constructor(private fb: FormBuilder, private _router:Router,private _signInService:SignInService) {
     this.submitForm = this.fb.group({
       token: ['', [Validators.required]],
     });
+    this.mobilePhone.set(_signInService.submitMobile)
     _signInService.twoFaUuid ? '' : _router.navigate(['/auth/signIn'])
   }
 

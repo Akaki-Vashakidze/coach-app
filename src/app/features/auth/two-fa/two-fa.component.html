@@ -1,7 +1,7 @@
 <mat-card *ngIf="!loader" class="auth-card">
     <form [formGroup]="submitForm" novalidate>
       <h2>{{'confirm' | translate}}</h2>
-  
+        <div style="padding: 6px; text-align: center;">{{'code_sent_mobile' | translate}}{{' '}}{{mobilePhone()}}</div>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>{{'code' | translate}}</mat-label>
         <input matInput type="text" formControlName="token" [placeholder]="'code' | translate" />
