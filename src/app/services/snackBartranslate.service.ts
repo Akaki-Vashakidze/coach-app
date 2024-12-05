@@ -29,7 +29,9 @@ export class SnackBarTranslateService {
             return 'Athlete registration limit exceeded';
           case 'error':
             return 'Error occured';
-
+            case 'WAIT_UNTIL_RESPONSE_DELAY':
+              return 'Too many authorization requests, please wait';
+            
 
 
           default:
@@ -55,7 +57,8 @@ export class SnackBarTranslateService {
             return 'დაფიქსირდა შეცდომა';
           case 'athlete_deleted':
             return 'სპორცმენი გაცურვიდან წაიშალა';
-
+            case 'WAIT_UNTIL_RESPONSE_DELAY':
+              return 'დაფიქსირდა რამოდენიმე ავტორიზაციის მცდელობა, გთხოვთ დაელოდოთ.';
 
 
 

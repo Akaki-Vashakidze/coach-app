@@ -1,6 +1,5 @@
 
 import { Route } from '@angular/router';
-import { DashboardComponent } from '../../components/shared/dashboard/dashboard.component';
 import { CoachComponent } from './coach.component';
 import { TeamDetailsComponent } from '../../components/shared/team-details/team-details.component';
 import { CompetitionRegistrationComponent } from '../../components/shared/competition-registration/competition-registration.component';
@@ -27,7 +26,6 @@ export const coachRoutes: Route[] = [
                 path:'teamDetails',
                 component:TeamDetailsComponent
             },
-
             {
                 path:'competition',
                 children:[

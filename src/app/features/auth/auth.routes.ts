@@ -6,6 +6,7 @@ import { RecoveryUserIdComponent } from './recovery-user-id/recovery-user-id.com
 import { SignInConfirmComponent } from './sign-in-confirm/sign-in-confirm.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AuthComponent } from './auth.component';
+import { TwoFaComponent } from './two-fa/two-fa.component';
 
 export const authRoutes: Route[] = [
     {
@@ -36,6 +37,10 @@ export const authRoutes: Route[] = [
             {
                 path: 'newPass',
                 component: NewPassRecoveryComponent
+            },
+            {
+                path:'twoFa',
+                component:TwoFaComponent
             },
         ]
     }

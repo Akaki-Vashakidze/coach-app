@@ -13,29 +13,29 @@ import { finalize } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-two-fa',
   standalone: true,
   imports: [CommonModule,TranslateModule, ReactiveFormsModule, LoaderSpinnerComponent,MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss'
+  templateUrl: './two-fa.component.html',
+  styleUrl: './two-fa.component.scss'
 })
-export class SignInComponent {
-  signInForm: FormGroup;
-  loader!:boolean;
+export class TwoFaComponent {
 
+  loader!:boolean;
+  submitForm!: FormGroup;
   constructor(private fb: FormBuilder, private _router:Router,private _signInService:SignInService) {
-    this.signInForm = this.fb.group({
-      pidOrEmail: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+    this.submitForm = this.fb.group({
+      token: ['', [Validators.required]],
     });
+    _signInService.twoFaUuid ? '' : _router.navigate(['/auth/signIn'])
   }
 
   onSubmit(): void {
-    if (this.signInForm.valid) {
+    if (this.submitForm.valid) {
       this.loader = true;
   
       this._signInService
-        .login({ ...this.signInForm.value, userType: UserType.COACH })
+        .submitLogin(this.submitForm.value.token)
         .pipe(
           finalize(() => {
             this.loader = false; 
@@ -46,8 +46,6 @@ export class SignInComponent {
             console.log(item);
             if (item?.data?.user) {
               this._router.navigate(['/coach/dashboard']);
-            } else {
-              this._router.navigate(['/auth/twoFa']);
             }
           },
           (error) => {
@@ -58,10 +56,4 @@ export class SignInComponent {
       console.error('Form is invalid');
     }
   }
-
-  hasError(controlName: string, error: string): boolean {
-    const control = this.signInForm.get(controlName);
-    return control?.hasError(error) && control?.touched || false;
-  }
-  
 }
