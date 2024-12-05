@@ -181,6 +181,7 @@ export class CompetitionRegistrationComponent implements OnInit {
       )
       .subscribe((item) => {
         if (item.athlete) {
+          this.snackBarService.openSnackBar('athlete_registered','ok')
           this.isLoadingAddAthlet = false; 
           this.clearForm();
           this.getRegisteredAthletes();
@@ -230,6 +231,7 @@ deleteRegisteredAthlete(athlete:any){
     )
     .subscribe((item) => {
       if(item.status == 200){
+        this.snackBarService.openSnackBar('athlete_deleted','ok')
         this.getRegisteredAthletes()
         this.getAllRegisteredAthletes()
       } 

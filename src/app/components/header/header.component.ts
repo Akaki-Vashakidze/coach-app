@@ -11,6 +11,7 @@ import { ShortenPipe } from '../../pipes/shorten.pipe';
 import { I18nService } from '../../services/i18n.service';
 import { MobileHeaderComponent } from '../shared/mobileHeader/mobileHeader.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedService } from '../../services/shared.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit{
  public language : string = 'English'
  public dropdownOpen : boolean = false;
  menuDropdownOpen:boolean = false;
- constructor(private i18nService:I18nService,private sessionService:SessionService,private _router:Router, private teamService:TeamService ,private signInService:SignInService ){
+ constructor(private i18nService:I18nService,private sessionService:SessionService,private _router:Router, private _sharedService:SharedService,private teamService:TeamService ,private signInService:SignInService ){
   this.userData = sessionService.getSessionDataInfo();
  }
 
@@ -78,6 +79,7 @@ teamSwitch(team:Team){
 
 switchLanguage(lang: string) {
   this.dropdownOpen = false;
+  this._sharedService.setLanguage(lang)
   lang == 'en' ? this.language = 'English' : this.language = 'ქართული'
   this.i18nService.changeCurrentLanguage(lang)
   this.menuDropdownOpen = false;

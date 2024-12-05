@@ -1,18 +1,20 @@
 import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { TranslateService } from '@ngx-translate/core';
+import { SharedService } from './shared.service';
+import { SnackBarTranslateService } from './snackBartranslate.service';
 
 @Injectable({
   providedIn: 'root',
+  
 })
 export class SnackbarService {
-  // private readonly translateService = inject(TranslateService);
-
-  constructor(private _snackBar: MatSnackBar) {}
-
-  openSnackBar(message: string, action: string, type = 'success') {
+  constructor(private _snackBar: MatSnackBar, private _sharedService:SharedService, private _errTranslate:SnackBarTranslateService) {}
+  
+  openSnackBar(message1: string, action1: string, type = 'success') {
+    console.log(this._sharedService.language)
+   let message = this._errTranslate.translateError(message1,this._sharedService.language)
+   let action = this._errTranslate.translateError(action1,this._sharedService.language)
     this._snackBar.open(
-      // this.translateService.instant(message)
       message
       , action, {
       duration: 2000,

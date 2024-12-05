@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
+import { SharedService } from './shared.service';
 
 const STORAGE_KEY = 'language';
 
 @Injectable()
 export class I18nService {
   private readonly availableLanguages = ['ka', 'en'];
-  constructor(private translateService: TranslateService) {}
+  constructor(private translateService: TranslateService, private _sharedService:SharedService) {}
   public changedLang = new BehaviorSubject<string | null>('en');
- 
+  
   setInitialLanguage(): void {
     const browserLang = this.translateService.getBrowserLang() || 'en';
     let currentLanguage = localStorage.getItem(STORAGE_KEY);
@@ -20,7 +21,7 @@ export class I18nService {
       const preferredLang = defaultLang ? browserLang : 'en';
       currentLanguage = preferredLang;
     }
-
+    this._sharedService.setLanguage(currentLanguage)
     this.translateService.setDefaultLang(currentLanguage);
     this.translateService.use(currentLanguage);
   }
