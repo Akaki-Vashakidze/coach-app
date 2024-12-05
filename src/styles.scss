@@ -87,10 +87,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
   }
 
+  @media (min-width:768px){
+
+    .hideOnPc {
+      display: none;
+    }
+  }
+
   @media (max-width:768px){
     .actionDiv {
       display: grid;
       grid-template-columns: 1fr !important;
       gap: 10px;
+    }
+
+    .hideOnMobile {
+      display: none;
     }
   }

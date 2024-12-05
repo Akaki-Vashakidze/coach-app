@@ -52,6 +52,12 @@
     }
 }
 
+@media (max-width:380px){
+    .compCardCont {
+        width: 300px;
+    }
+}
+
 .regEndDate {
     color: red;
 }

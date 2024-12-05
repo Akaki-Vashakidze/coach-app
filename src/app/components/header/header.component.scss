@@ -35,6 +35,7 @@
 
 .gapLane {
     border-left: 1px solid gray;
+    height: 30px;
 }
 
 .padding5 {
@@ -89,5 +90,7 @@
     .hideOnMobile {
         display: none;
       }
-      
+      .headerCont {
+        padding: 0px 10px;
+      }
   }
