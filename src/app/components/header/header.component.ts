@@ -17,7 +17,7 @@ import { SharedService } from '../../services/shared.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatMenuModule, MatIconModule, RouterModule, ShortenPipe, MobileHeaderComponent,TranslateModule],
+  imports: [CommonModule, MatMenuModule, MatIconModule, RouterModule, ShortenPipe,TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

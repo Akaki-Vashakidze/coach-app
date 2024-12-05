@@ -43,7 +43,7 @@
             <mat-card style="height: 100%; padding: 5px 10px;">
               <div class="addPartitcipantsCont" *ngIf="!chosenRace">{{'choose_race' | translate}}</div>
               <div class="addPartitcipantsCont" *ngIf="chosenRace">
-                <div style="font-weight: 600;">{{ chosenRace.title }}</div>
+                <div style="font-weight: 600;">{{ chosenRace.distance + ' ' }}{{chosenRace.style | translate}}</div>
                 <app-loader-spinner *ngIf="isLoading" color="black" height="200px"></app-loader-spinner>
                 <div *ngIf="!isLoading" class="registeredAthletesList">
                   <div *ngIf="raceRegisterAthletes().length == 0">{{'no_athlete' | translate}}</div>
@@ -60,7 +60,7 @@
                   </div>
                 </div>
                 <div class="addAthleteCont">
-                  <div *ngIf="!isLoadingAddAthlet"  style="text-align: center; padding: 5px;">Add Athlete</div>
+                  <div *ngIf="!isLoadingAddAthlet"  style="text-align: center; padding: 5px;">{{'add_athlete' | translate}}</div>
                   <form [formGroup]="registerAthleteForm" class="add_athlete_form">
                     <div class="formFieldsCont">
                       <mat-form-field *ngIf="!isLoadingAddAthlet" class="example-full-width" appearance="outline">
@@ -123,7 +123,7 @@
           </mat-expansion-panel-header>
           <div class="panel-content">
             <div *ngFor="let race of athlete?.races, let i = index">
-              <div>{{(i + 1) + '. ' + race.distance + ' ' + race.style + ' '}}<span style="color: rgb(163, 162, 162);">{{race.gender}}</span></div>
+              <div>{{(i + 1) + '. ' + race.distance + ' '}}{{race.style | translate}}{{' '}}<span style="color: rgb(163, 162, 162);">{{race.gender + 'S' | translate}}</span></div>
             </div>
           </div>
         </mat-expansion-panel>

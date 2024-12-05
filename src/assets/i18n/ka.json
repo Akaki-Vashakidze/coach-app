@@ -124,6 +124,7 @@
   "yes":"კი",
   "no":"არა",
   "do_you_want_delete":"ნამდვილად გსურთ წაშლა?",
-  "comp_registration":"რეგისტრაცია"
-
+  "comp_registration":"რეგისტრაცია",
+  "team_details":"გუნდი",
+  "log_out":"გასვლა"
 }

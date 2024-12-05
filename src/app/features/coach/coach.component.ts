@@ -13,11 +13,11 @@ import { HeaderComponent } from '../../components/header/header.component';
 export class CoachComponent {
   menuItems = [
     {
-      title: 'Log out',
+      title: 'log_out',
       action: 'log_out'
     },
     {
-      title: 'Team details',
+      title: 'team_details',
       action: 'team_details'
     },
   ]

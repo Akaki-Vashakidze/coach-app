@@ -124,5 +124,7 @@
   "yes":"Yes",
   "no":"No",
   "do_you_want_delete":"Do you want to delete?",
-  "comp_registration":"Registration"
+  "comp_registration":"Registration",
+  "team_details":"Team Details",
+  "log_out":"Log out"
 }

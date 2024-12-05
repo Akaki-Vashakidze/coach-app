@@ -1,5 +1,5 @@
 <div class="headerCont">
-    <div class="title" *ngIf="userData" routerLink="/coach/dashboard"><mat-icon>home</mat-icon></div>
+    <div class="title hideOnPc" *ngIf="userData" routerLink="/coach/dashboard"><mat-icon>home</mat-icon></div>
     <div class="title hideOnMobile" *ngIf="userData" routerLink="/coach/dashboard">{{'Coach' | translate}}</div>
     <div class="title" *ngIf="!userData" routerLink="/coach/dashboard">{{ 'Please_sign_in' | translate}}</div>
     <div class="info">
@@ -30,7 +30,7 @@
 <!-- <app-mobile-header></app-mobile-header> -->
 
 <mat-menu #menu="matMenu">
-    <button *ngFor="let item of menuItems" mat-menu-item (click)="onMenuItemClick(item.action)">{{item?.title}}</button>
+    <button *ngFor="let item of menuItems" mat-menu-item (click)="onMenuItemClick(item.action)">{{item.title | translate}}</button>
 </mat-menu>
 
 <mat-menu #teamsMenu="matMenu">
