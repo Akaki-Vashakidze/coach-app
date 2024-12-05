@@ -32,7 +32,7 @@ export const coachRoutes: Route[] = [
                 path:'competition',
                 children:[
                     {
-                        path:'registration/:statement/:id',
+                        path:'registration/:id',
                         component:CompetitionRegistrationComponent
                     },
                     {

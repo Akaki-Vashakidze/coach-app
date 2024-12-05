@@ -13,7 +13,7 @@
         <div class="actions">
             <button [routerLink]="'/coach/competition/details/' + competition?._id" mat-raised-button>{{'details' | translate}}</button>
             <div [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement) | translate">
-                <button [routerLink]="'/coach/competition/registration/' + (competition?.statement?.hasActiveStatement ? competition?.statement?.participantMaxCount : '0') + '/' + competition?._id" 
+                <button [routerLink]="'/coach/competition/registration/' + competition?._id" 
                 [disabled]="!canRegistrate(competition.registrationEndDate, competition?.statement?.hasActiveStatement)"
                  mat-raised-button>{{'register' | translate}}</button>
             </div>
