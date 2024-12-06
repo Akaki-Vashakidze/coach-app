@@ -127,5 +127,8 @@
   "comp_registration":"Registration",
   "team_details":"Team Details",
   "log_out":"Log out",
-  "code_sent_mobile":"Code is sent on mobile number"
+  "code_sent_mobile":"Code is sent on mobile number",
+  "athletes":"Athletes",
+  "competitions":"Competitions",
+  "here_athlete_info":"Here will be athlete info"
 }

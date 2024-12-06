@@ -1,4 +1,14 @@
 <div *ngIf="event()" class="eventDetCont">
+    <div class="headerRegComp">
+        <div class="backNavigation" routerLink="/coach/dashboard/competitions">
+          <button mat-icon-button class="round-button">
+            <mat-icon>arrow_left</mat-icon>
+          </button>
+          <div>{{'back' | translate}}</div>
+        </div>
+        <div class="headerFont">{{'details' | translate}}</div>
+        <div>{{getFormattedDate()}}</div>
+    </div>
     <mat-card class="card">
         <div class="info">
             <!-- <app-label

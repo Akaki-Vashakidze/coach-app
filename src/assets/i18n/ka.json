@@ -127,5 +127,8 @@
   "comp_registration":"რეგისტრაცია",
   "team_details":"გუნდი",
   "log_out":"გასვლა",
-  "code_sent_mobile":"კოდი გამოგზავნილია მობილურზე"
+  "code_sent_mobile":"კოდი გამოგზავნილია მობილურზე",
+  "athletes":"სპორცმენები",
+  "competitions":"შეჯიბრები",
+  "here_athlete_info":"აქ გამოჩნდება სპორცმენის ინფორმაცია"
 }
