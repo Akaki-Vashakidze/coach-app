@@ -24,14 +24,21 @@ export class CompetitionsComponent {
   competitions = signal<Competition[] | null>(null);
   constructor(private competitionService:CompetitionsService,private teamService:TeamService, private sessionService:SessionService){
     let chosenTeam = teamService.getChosenTeam()
-    if(chosenTeam) {
+    if(!chosenTeam) {
+      teamService.teamIsSet.subscribe(item => {
+        chosenTeam = item;
+        let teamId = chosenTeam._id
+        competitionService.getTeamCompetitions(teamId,sessionService.userId).subscribe(item => {
+            this.competitions.set(item)
+        })
+    })
+    } else {
       let teamId = chosenTeam._id
       competitionService.getTeamCompetitions(teamId,sessionService.userId).subscribe(item => {
           this.competitions.set(item)
       })
-    } else {
-      this.competitions.set(null)
     }
+
   }
 
   canRegistrate(regEndDate: Date, hasActiveStatement:boolean | undefined): boolean {
