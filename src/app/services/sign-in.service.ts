@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, tap } from 'rxjs';
 import { GenericResponce, LoginInfo, PidOrMail, RecPassStart, SessionData, SubmitTwoFa, SuccessfulPassChangeDataRes, userInfoForPassChange } from '../interfaces/interfaces';
 import { SessionService } from './session.service';
+import { TeamService } from './team.service';
 
 interface AuthResult { data: SessionData | any }
 
@@ -17,7 +18,7 @@ export class SignInService {
   submitMobile!:string;
   recoveryContactInfo!:{email:string, phone:string}
   userRecoveryUuid!:string;
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _teamService:TeamService) { }
 
   login(loginInfo: LoginInfo) {
     return this._http.post<{ result: AuthResult }>("/consoleApi/session/admin", { data: loginInfo }).pipe(map((res: { result: AuthResult }) => {
@@ -42,6 +43,8 @@ export class SignInService {
 
   logout() {
     return this._http.delete<GenericResponce<boolean>>("/consoleApi/session", {}).pipe(tap((item) => {
+      this._teamService.deleteChosenTeam(),
+      localStorage.removeItem('lane4ChosenTeam')
       item.result.data ? this.sessionService.deleteLocalData() : '';
      }))
    }

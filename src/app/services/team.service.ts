@@ -41,6 +41,10 @@ export class TeamService {
     return this.chosenTeam;
   }
 
+  deleteChosenTeam(){
+    this.chosenTeam = '';
+  }
+
   getTeamDetails() {
     let teamId = this.getChosenTeam()?._id;
     let userId = this.sessionService.userId
