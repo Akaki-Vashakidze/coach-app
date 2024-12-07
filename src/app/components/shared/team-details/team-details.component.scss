@@ -8,3 +8,40 @@
 h3 {
     text-align: center;
 }
+
+
+.headerRegComp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .backNavigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: var(--blue1);
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .round-button {
+    width: 30px;                  /* Define the button size */
+    height: 30px;                 /* Define the button size */
+    border-radius: 50%;           /* Make the button round */
+    padding: 0;                   /* Remove padding */
+    background-color: #0969DA;    /* Set the background color */
+    display: flex;                /* Use flexbox */
+    align-items: center;          /* Vertically center the icon */
+    justify-content: center;      /* Horizontally center the icon */
+  }
+  
+  mat-icon {
+    color: white;                 /* Set the icon color to white */
+  }
+
+  .headerRegComp {
+    padding-bottom: 10px;
+  }

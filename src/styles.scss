@@ -2,7 +2,11 @@
 @import "./fonts.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--dark-blue2)
+   }
 
 :root {
     --banner-text-color-dark: #37557f;
@@ -105,3 +109,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       display: none;
     }
   }
+
+  .mat-mdc-button, 
+.mat-mdc-card, 
+.mat-mdc-input, 
+.mat-mdc-toolbar, 
+.mat-mdc-table,
+.mat-expansion-panel {
+  color: var(--dark-blue2)!important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-container-color: var(--blue2)!important;
+  --mdc-protected-button-label-text-color: white;
+  --mat-protected-button-state-layer-color: white;
+  --mat-protected-button-ripple-color: rgba(255, 255, 255, 0.1);
+}

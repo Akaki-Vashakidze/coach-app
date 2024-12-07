@@ -130,5 +130,7 @@
   "code_sent_mobile":"Code is sent on mobile number",
   "athletes":"Athletes",
   "competitions":"Competitions",
-  "here_athlete_info":"Here will be athlete info"
+  "here_athlete_info":"Here will be athlete info",
+  "send":"Send code",
+  "team":"Team"
 }

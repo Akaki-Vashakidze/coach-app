@@ -6,11 +6,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-team-details',
   standalone: true,
-  imports: [CommonModule,MatCardModule,MatTabsModule,MatExpansionModule,LoaderSpinnerComponent],
+  imports: [CommonModule,MatCardModule,MatIconModule, RouterModule,TranslateModule,MatTabsModule,MatExpansionModule,LoaderSpinnerComponent],
   templateUrl: './team-details.component.html',
   styleUrl: './team-details.component.scss'
 })
@@ -29,6 +32,15 @@ export class TeamDetailsComponent {
       this.coaches.set(coaches)
       this.Athletes.set(athletes)
     })
+  }
+
+  getFormattedDate(): string {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');   // Add leading zero if day < 10
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Get month (0-indexed, so add 1)
+    const year = today.getFullYear();
+    
+    return `${day}.${month}.${year}`;
   }
 
   onTabChange(item:any){

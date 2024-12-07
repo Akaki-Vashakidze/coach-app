@@ -13,7 +13,6 @@ export class TeamService {
   teamIsSet = new BehaviorSubject('');
   constructor(private _http: HttpClient) {
     let chosen = localStorage.getItem('lane4ChosenTeam')
-    console.log(111, chosen)
     if(chosen) {
       chosen ? this.chosenTeam = JSON.parse(chosen) : '';
     }
