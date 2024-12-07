@@ -109,19 +109,29 @@ export class CompetitionRegistrationComponent implements OnInit {
 
     let prevValue:any;
     this.registerAthleteForm.get('athleteResult')?.valueChanges.subscribe(item => {
-      if (item && item.length === 2 && prevValue.split('')[2] != ':') {
-        const updatedValue = `${item}:`;
-        this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
-          emitEvent: false,
-        });
-      } 
-      if (item && item.length === 5 && prevValue.split('')[5] != '.') {
-        const updatedValue = `${item}.`;
+      const lastChar = item[item.length - 1];
+      const isLastCharNumber = /^\d$/.test(lastChar); 
+      if(isLastCharNumber){
+        if (item && item.length === 2 && prevValue.split('')[2] != ':') {
+          const updatedValue = `${item}:`;
+          this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
+            emitEvent: false,
+          });
+        } 
+        if (item && item.length === 5 && prevValue.split('')[5] != '.') {
+          const updatedValue = `${item}.`;
+          this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
+            emitEvent: false,
+          });
+        }
+        prevValue = item;
+      } else {
+        const updatedValue = item.slice(0, -1); 
         this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
           emitEvent: false,
         });
       }
-      prevValue = item;
+
     })
   
 
