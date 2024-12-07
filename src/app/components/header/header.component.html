@@ -10,17 +10,20 @@
         </div>
         <div class=" padding5 gapLane" *ngIf="teams().length == 0">No team</div>
         <div class="language-selector gapLane">
-            <button class="dropdown-btn" (click)="toggleDropdown()">
-              <span class="icon"><img src="assets/imgs/Globe.svg" alt="Globe icon"></span> 
+            <button mat-button [matMenuTriggerFor]="menuLang" class="dropdown-btn">
+              <span class="icon">
+                <img src="assets/imgs/Globe.svg" alt="Globe icon">
+              </span>
               <span class="hideOnMobile">{{language}}</span>
               <span class="arrow hideOnMobile">&#9660;</span>
             </button>
-        
-            <ul class="dropdown-content" *ngIf="dropdownOpen">
-              <li (click)="switchLanguage('en')">English</li>
-              <li (click)="switchLanguage('ka')">ქართული</li>
-            </ul>
-        </div>
+          
+            <mat-menu #menuLang="matMenu">
+              <button mat-menu-item (click)="switchLanguage('en')">English</button>
+              <button mat-menu-item (click)="switchLanguage('ka')">ქართული</button>
+            </mat-menu>
+          </div>
+          
         <div *ngIf="userData" class="menu gapLane padding5" [matMenuTriggerFor]="menu">
             <mat-icon>settings</mat-icon>
         </div>

@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit{
  chosenTeam = signal<Team | null>(null)
 
  public language : string = 'English'
- public dropdownOpen : boolean = false;
  menuDropdownOpen:boolean = false;
  constructor(private i18nService:I18nService,private sessionService:SessionService,private _router:Router, private _sharedService:SharedService,private teamService:TeamService ,private signInService:SignInService ){
   this.userData = sessionService.getSessionDataInfo();
@@ -45,10 +44,6 @@ export class HeaderComponent implements OnInit{
     })
   }
  }
-
- toggleDropdown() {
-  this.dropdownOpen = !this.dropdownOpen;
-}
 
  onMenuItemClick( action: string) {
   switch (action) {
@@ -78,7 +73,6 @@ teamSwitch(team:Team){
 }
 
 switchLanguage(lang: string) {
-  this.dropdownOpen = false;
   this._sharedService.setLanguage(lang)
   lang == 'en' ? this.language = 'English' : this.language = 'ქართული'
   this.i18nService.changeCurrentLanguage(lang)

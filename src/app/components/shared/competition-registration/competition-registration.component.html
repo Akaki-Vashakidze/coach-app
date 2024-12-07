@@ -17,7 +17,7 @@
     <div *ngIf="event()" class="eventTitle" style="padding: 10px; border-bottom: 1px solid var(--light-blue1);">
       <!-- <div class="title" style="text-align: center; font-weight: 600; font-size: 18px;">{{event()?.event.title}}</div> -->
       <div class="info">
-        <app-label label="Title" [value]="event()?.event.address"></app-label>
+        <app-label label="Title" [value]="event()?.event.title"></app-label>
         <app-label label="reg_start_date" [value]="event()?.event.registrationStartDate | date: 'dd-MM-yyy'"></app-label>
         <app-label style="color: red;" label="reg_end_date" [value]="event()?.event.registrationEndDate | date: 'dd-MM-yyy'"></app-label>
         <app-label label="Start_date" [value]="event()?.event.startDate | date: 'dd-MM-yyy'"></app-label>
