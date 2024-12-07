@@ -133,6 +133,7 @@ export class CompetitionRegistrationComponent implements OnInit {
     this.chosenRace = race;
     this.getRegisteredAthletes()
     this.clearForm()
+    this.filteredOptions.set(null)
     this.getCoachTeamAthleteQualifications(race._id)
   }
 
