@@ -111,44 +111,34 @@ export class CompetitionRegistrationComponent implements OnInit {
     this.registerAthleteForm.get('athleteResult')?.valueChanges.subscribe((item: string) => {
       if (!item) return;
     
-      const lastChar = item[item.length - 1];
-      const isLastCharNumber = /^\d$/.test(lastChar);
-    
-      // Allow deletion of any character
       if (item.length < prevValue.length) {
-        prevValue = item; // Update prevValue for deletion
+        prevValue = item; 
         return;
       }
     
-      if (isLastCharNumber) {
-        // Add ':' after the second character
-        if (item.length === 2 && !item.includes(':')) {
-          const updatedValue = `${item}:`;
-          this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
-            emitEvent: false,
-          });
-        }
+      let formattedValue = item.replace(/[^0-9]/g, '');
     
-        // Add '.' after the fifth character
-        if (item.length === 5 && !item.includes('.')) {
-          const updatedValue = `${item}.`;
-          this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
-            emitEvent: false,
-          });
-        }
-      } else {
-        // If the last character is not a number, remove it
-        const updatedValue = item.slice(0, -1);
-        this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
+      if (formattedValue.length > 2 && !formattedValue.includes(':')) {
+        formattedValue = `${formattedValue.slice(0, 2)}:${formattedValue.slice(2)}`;
+      }
+    
+      if (formattedValue.length > 5 && !formattedValue.includes('.')) {
+        formattedValue = `${formattedValue.slice(0, 5)}.${formattedValue.slice(5)}`;
+      }
+    
+      if (formattedValue.length > 8) {
+        formattedValue = formattedValue.slice(0, 8);
+      }
+    
+      if (formattedValue !== item) {
+        this.registerAthleteForm.get('athleteResult')?.setValue(formattedValue, {
           emitEvent: false,
         });
       }
     
-      // Update prevValue with the current valid input
-      prevValue = this.registerAthleteForm.get('athleteResult')?.value || '';
+      prevValue = formattedValue; 
     });
     
-  
 
     this.getAllRegisteredAthletes()
   }
