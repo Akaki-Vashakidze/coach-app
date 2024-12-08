@@ -112,17 +112,17 @@ export class CompetitionRegistrationComponent implements OnInit {
       if (!item) return;
     
       if (item.length < prevValue.length) {
-        prevValue = item; 
+        prevValue = item;
         return;
       }
     
-      let formattedValue = item.replace(/[^0-9]/g, '');
+      let formattedValue = item.replace(/[^0-9:.]/g, '');
     
-      if (formattedValue.length > 2 && !formattedValue.includes(':')) {
+      if (formattedValue.length >= 2 && formattedValue[2] !== ':') {
         formattedValue = `${formattedValue.slice(0, 2)}:${formattedValue.slice(2)}`;
       }
     
-      if (formattedValue.length > 5 && !formattedValue.includes('.')) {
+      if (formattedValue.length >= 5 && formattedValue[5] !== '.') {
         formattedValue = `${formattedValue.slice(0, 5)}.${formattedValue.slice(5)}`;
       }
     
@@ -136,8 +136,10 @@ export class CompetitionRegistrationComponent implements OnInit {
         });
       }
     
-      prevValue = formattedValue; 
+      prevValue = formattedValue;
     });
+    
+    
     
 
     this.getAllRegisteredAthletes()
