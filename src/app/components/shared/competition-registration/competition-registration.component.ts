@@ -106,33 +106,48 @@ export class CompetitionRegistrationComponent implements OnInit {
     ).subscribe((filtered) => {
       this.filteredOptions.set(filtered);
     });
+    let prevValue: string = '';
 
-    let prevValue:any;
-    this.registerAthleteForm.get('athleteResult')?.valueChanges.subscribe(item => {
+    this.registerAthleteForm.get('athleteResult')?.valueChanges.subscribe((item: string) => {
+      if (!item) return;
+    
       const lastChar = item[item.length - 1];
-      const isLastCharNumber = /^\d$/.test(lastChar); 
-      if(isLastCharNumber){
-        if (item && item.length === 2 && prevValue.split('')[2] != ':') {
+      const isLastCharNumber = /^\d$/.test(lastChar);
+    
+      // Allow deletion of any character
+      if (item.length < prevValue.length) {
+        prevValue = item; // Update prevValue for deletion
+        return;
+      }
+    
+      if (isLastCharNumber) {
+        // Add ':' after the second character
+        if (item.length === 2 && !item.includes(':')) {
           const updatedValue = `${item}:`;
           this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
             emitEvent: false,
           });
-        } 
-        if (item && item.length === 5 && prevValue.split('')[5] != '.') {
+        }
+    
+        // Add '.' after the fifth character
+        if (item.length === 5 && !item.includes('.')) {
           const updatedValue = `${item}.`;
           this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
             emitEvent: false,
           });
         }
-        prevValue = item;
       } else {
-        const updatedValue = item.slice(0, -1); 
+        // If the last character is not a number, remove it
+        const updatedValue = item.slice(0, -1);
         this.registerAthleteForm.get('athleteResult')?.setValue(updatedValue, {
           emitEvent: false,
         });
       }
-
-    })
+    
+      // Update prevValue with the current valid input
+      prevValue = this.registerAthleteForm.get('athleteResult')?.value || '';
+    });
+    
   
 
     this.getAllRegisteredAthletes()
@@ -216,6 +231,7 @@ export class CompetitionRegistrationComponent implements OnInit {
     this.competitionService.getAllRegisteredAthletes(this.coachId,this.teamId,this.eventId,null).subscribe(item => {
       this.isLoadingAllRegAthletes = false;
       this.AllRegisterAthletes.set(item)
+      console.log(this.AllRegisterAthletes())
     })
   }
 
