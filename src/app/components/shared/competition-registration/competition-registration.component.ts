@@ -80,7 +80,7 @@ export class CompetitionRegistrationComponent implements OnInit {
      this.eventId = this.route.snapshot.paramMap.get('id') || '';
      this.registerAthleteForm = this.fb.group({
       athleteInfo: ['', [Validators.required]],
-      athleteResult: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(8)]],
+      athleteResult: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(8),Validators.pattern(/^\d{2}:\d{2}\.\d{2}$/),]],
     });
 
     this.coachId = this.sessionService.userId;
