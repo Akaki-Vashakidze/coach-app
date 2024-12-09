@@ -122,8 +122,9 @@
             </div>
           </mat-expansion-panel-header>
           <div class="panel-content">
-            <div *ngFor="let race of athlete?.races, let i = index">
-              <div>{{(i + 1) + '. ' + race.distance + ' '}}{{race.style | translate}}{{' '}}<span style="color: rgb(163, 162, 162);">{{race.gender + 'S' | translate}}</span></div>
+            <div class="athleteRegistrationInfo" *ngFor="let race of athlete?.races, let i = index">
+              <div>{{(i + 1) + '. ' + race?.race?.distance + ' '}}{{race?.race?.style | translate}}{{' '}}<span style="color: rgb(163, 162, 162);">{{race?.race?.gender + 'S' | translate}}</span></div>
+              <div class="qualTime">{{race?.qualificationTime?.minutes + ":" + race?.qualificationTime?.seconds + "." + race?.qualificationTime?.milliseconds}}</div>
             </div>
           </div>
         </mat-expansion-panel>

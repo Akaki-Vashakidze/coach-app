@@ -163,33 +163,6 @@
     flex-direction: row;
   }
 
-  @media (max-width:740px){
-    .regComponent{
-        display: flex;
-        flex-direction: column;
-    }
-    .add_athlete_form {
-        display: flex;
-        flex-direction: column;
-    }
-    .info {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    .regConainerFull ::ng-deep .mdc-tab__text-label {
-        display: flex;
-        flex-direction: column !important;
-      }
-      .dataTab {
-        padding-top: 5px;
-      }
-      .formFieldsCont {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-  }
-
   .round-button {
     width: 30px;                  /* Define the button size */
     height: 30px;                 /* Define the button size */
@@ -220,4 +193,40 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .athleteRegistrationInfo {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+
+  @media (max-width:740px){
+    .regComponent{
+        display: flex;
+        flex-direction: column;
+    }
+    .add_athlete_form {
+        display: flex;
+        flex-direction: column;
+    }
+    .info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    .regConainerFull ::ng-deep .mdc-tab__text-label {
+        display: flex;
+        flex-direction: column !important;
+      }
+      .dataTab {
+        padding-top: 5px;
+      }
+      .formFieldsCont {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .athleteRegistrationInfo {
+        padding-right: 0px;
+      }
   }
