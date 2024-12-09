@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit , OnDestroy{
   private subscription!: Subscription;
-  public font!:string;
+  public font:string = 'GeoFont';
   constructor(private i18nService: I18nService) {
     i18nService.setInitialLanguage();
   }
