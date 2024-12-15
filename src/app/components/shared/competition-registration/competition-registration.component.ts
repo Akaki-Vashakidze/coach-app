@@ -168,6 +168,16 @@ export class CompetitionRegistrationComponent implements OnInit {
   }
 
   addAthlete() {
+    const registrationEndDate = new Date(this.event()?.event.registrationEndDate);
+    const currentDate = new Date();
+    
+    registrationEndDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    
+    if (registrationEndDate < currentDate) {
+      this.snackBarService.openSnackBar('registration_deadline_passed', 'ok');
+      return;
+    }
     let time;
     if (this.chosenAthleteToRegister.result) {
       time = this.chosenAthleteToRegister.result.result.time;
