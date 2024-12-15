@@ -60,7 +60,7 @@
   "Third Level":"Third Level",
   "name":"Name",
   "Birth_date":"Birth Date",
-  "result":"Records",
+  "result":"Results",
   "points":"Points",
   "email":"Email",
   "Long_Course":"LC",
@@ -134,3 +134,4 @@
   "send":"Send code",
   "team":"Team"
 }
+

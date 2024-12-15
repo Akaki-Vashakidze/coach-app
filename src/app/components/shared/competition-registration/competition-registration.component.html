@@ -82,7 +82,7 @@
                       </mat-form-field>
                       
                       <app-loader-spinner *ngIf="isLoadingAddAthlet" color="black" height="100px"></app-loader-spinner>
-                      <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid || (statement - countRegisteredAthletes()) == 0"
+                      <button type="button" *ngIf="!isLoadingAddAthlet" (click)="addAthlete()" [disabled]="!registerAthleteForm.valid || (statement - countRegisteredAthletes()) == 0 || !registerAthleteForm.value.athleteResult "
                         mat-raised-button>{{'Add' | translate}}</button>
                     </div>
                       <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you_can_register' | translate}}{{' ' + (statement ? statement - countRegisteredAthletes() : '0') + ' '}}{{'more_athlete' | translate}}</div>
