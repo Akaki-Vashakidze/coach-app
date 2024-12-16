@@ -23,6 +23,7 @@ import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm-dialog/co
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { RegisteredAthletesComponent } from '../registered-athletes/registered-athletes.component';
 
 @Component({
   selector: 'app-competition-registration',
@@ -41,7 +42,8 @@ import { SnackbarService } from '../../../services/snackbar.service';
     MatExpansionModule,
     LabelComponent,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    RegisteredAthletesComponent
   ],
   templateUrl: './competition-registration.component.html',
   styleUrls: ['./competition-registration.component.scss'],

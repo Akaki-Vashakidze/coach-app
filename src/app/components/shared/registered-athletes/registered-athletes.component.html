@@ -1,0 +1,32 @@
+<mat-card class="allRegisteredAthletes">
+    <div *ngIf="AllRegisterAthletes?.length > 0" class="allRegisteredAthletes_header">
+      {{'registered_athletes' | translate}}
+    </div>
+    <div *ngIf="AllRegisterAthletes?.length == 0" class="allRegisteredAthletes_header">
+      {{"athlletes_note_registered" | translate}}
+    </div>
+    <div style="width: 100%;">
+      <app-loader-spinner *ngIf="isLoadingAllRegAthletes" color="black" height="500px"></app-loader-spinner>
+      <mat-accordion *ngIf="!isLoadingAllRegAthletes" >
+        <mat-expansion-panel style="margin: 5px;" *ngFor="let athlete of AllRegisterAthletes">
+          <mat-expansion-panel-header>
+            <div class="header-content">
+              <div class="title">
+                <span class="header-title">{{athlete.athlete?.lastName + ' ' + athlete?.athlete?.firstName}}</span>
+                <span *ngIf="athlete.races.length > 0" class="header-subtitle">{{athlete.races.length + ' '}}{{'races' | translate}}</span>
+                <span *ngIf="athlete.races.length == 0" class="header-subtitle">{{'not_registered'}}</span>
+              </div>
+              <span class="date">{{athlete?.athlete?.birthDate | date : 'yyyy'}}</span>
+            </div>
+          </mat-expansion-panel-header>
+          <div class="panel-content">
+            <div class="athleteRegistrationInfo" *ngFor="let race of athlete?.races, let i = index">
+              <div>{{(i + 1) + '. ' + race?.race?.distance + ' '}}{{race?.race?.style | translate}}{{' '}}<span style="color: rgb(163, 162, 162);">{{race?.race?.gender + 'S' | translate}}</span></div>
+              <div class="qualTime">{{race?.qualificationTime?.minutes + ":" + race?.qualificationTime?.seconds + "." + race?.qualificationTime?.milliseconds}}</div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </mat-card>

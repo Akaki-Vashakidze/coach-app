@@ -27,5 +27,5 @@
         </div>
     </mat-card>
 </div>
-
-<app-loader-spinner *ngIf="!event()" color="black" height="500px"></app-loader-spinner>
+<app-registered-athletes [AllRegisterAthletesArr]="AllRegisterAthletes()"></app-registered-athletes>
+<app-loader-spinner *ngIf="!event() || !AllRegisterAthletes()" color="black" height="500px"></app-loader-spinner>
