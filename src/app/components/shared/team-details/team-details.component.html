@@ -19,7 +19,9 @@
               Coaches
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p *ngFor="let coach of coaches()">{{coach?.lastName + ' ' + coach?.firstName}}</p>
+          <p *ngFor="let coach of coaches()">
+            <span *ngIf="coach._id != '673f816b7d58028822515c46'">{{coach?.lastName + ' ' + coach?.firstName}}</span>
+          </p>
         </mat-expansion-panel>
         
         <mat-expansion-panel>
