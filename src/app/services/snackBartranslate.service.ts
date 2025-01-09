@@ -48,17 +48,17 @@ export class SnackBarTranslateService {
           case 'PARTICIPANT_ALREADY_EXISTS':
             return 'სპორტსმენი უკვე დამატებულია ამ დისციპლინაზე';
           case 'athlete_registered':
-            return 'სპორცმენი წარმატებით დარეგისტრირდა';
+            return 'სპორტსმენი წარმატებით დარეგისტრირდა';
           case 'success':
             return 'წარმატებული მცდელობა';
           case 'ok':
             return 'ოკ';
           case 'PARTICIPANT_MAX_LIMIT_EXCEEDED':
-            return 'სპორცმენების დარეგისტრირების ლიმიტი ამოიწურა';
+            return 'სპორტსმენების დარეგისტრირების ლიმიტი ამოიწურა';
           case 'error':
             return 'დაფიქსირდა შეცდომა';
           case 'athlete_deleted':
-            return 'სპორცმენი გაცურვიდან წაიშალა';
+            return 'სპორტსმენი გაცურვიდან წაიშალა';
           case 'WAIT_UNTIL_RESPONSE_DELAY':
             return 'დაფიქსირდა რამოდენიმე ავტორიზაციის მცდელობა, გთხოვთ დაელოდოთ.';
           case 'registration_deadline_passed':
