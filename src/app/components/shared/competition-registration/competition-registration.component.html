@@ -86,7 +86,7 @@
                         mat-raised-button>{{'Add' | translate}}</button>
                     </div>
                       <div *ngIf="statement - countRegisteredAthletes() != 0" class="athletesLeftToRegister">{{'you_can_register' | translate}}{{' ' + (statement ? statement - countRegisteredAthletes() : '0') + ' '}}{{'more_athlete' | translate}}</div>
-                      <div *ngIf="statement - countRegisteredAthletes() == 0" class="athletesLeftToRegister" style="color: red;">{{'you can not register more ahletes '}}</div>
+                      <div *ngIf="statement - countRegisteredAthletes() == 0" class="athletesLeftToRegister" style="color: red;">{{'no_more_athletes' | translate}}</div>
                   </form>
                 </div>
               </div>

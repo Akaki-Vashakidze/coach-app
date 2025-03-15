@@ -132,6 +132,7 @@
   "competitions":"Competitions",
   "here_athlete_info":"Here will be athlete info",
   "send":"Send code",
-  "team":"Team"
+  "team":"Team",
+  "no_more_athletes":"You can not register another athlete."
 }
 
