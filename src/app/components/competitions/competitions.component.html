@@ -16,7 +16,7 @@
                 translate}}</button>
             <div
                 [matTooltip]="matToolTipSet(competition.registrationEndDate, competition?.statement?.hasActiveStatement) | translate">
-                <button [routerLink]="'/coach/competition/registration/' + competition?._id" [disabled]="!this.canRegistrate(competition.registrationEndDate,competition?.statement?.hasActiveStatement)"
+                <button *ngIf="this.canRegistrate(competition.registrationEndDate,competition?.statement?.hasActiveStatement)" [routerLink]="'/coach/competition/registration/' + competition?._id"
                     mat-raised-button>{{'register' | translate}}</button>
             </div>
         </div>
