@@ -29,13 +29,14 @@ export class CompetitionsComponent {
         chosenTeam = item;
         let teamId = chosenTeam._id
         competitionService.getTeamCompetitions(teamId,sessionService.userId).subscribe(item => {
-            this.competitions.set(item)
+          this.competitions.set(item?.reverse() || [])
         })
     })
     } else {
       let teamId = chosenTeam._id
       competitionService.getTeamCompetitions(teamId,sessionService.userId).subscribe(item => {
           this.competitions.set(item)
+          this.competitions.set(item?.reverse() || [])
       })
     }
 
