@@ -184,9 +184,16 @@ export class CompetitionRegistrationComponent implements OnInit {
     if (this.chosenAthleteToRegister.result) {
       time = this.chosenAthleteToRegister.result.result.time;
     } else {
-      time = this.convertItimeService.convertStringTimeToItime(
-        this.registerAthleteForm.value.athleteResult || ''
-      );
+      // for no time
+      // time = this.convertItimeService.convertStringTimeToItime(
+      //   this.registerAthleteForm.value.athleteResult || ''
+      // );
+      time = {
+          "hours": "77",
+          "milliseconds": "77",
+          "minutes": "77",
+          "seconds": "77"
+      }
     }
   
     this.isLoadingAddAthlet = true;
@@ -277,8 +284,8 @@ deleteRegisteredAthlete(athlete:any){
       this.registerAthleteForm.get('athleteResult')?.disable();
       this.AthleteResultValue = this.chosenAthleteToRegister.result.result.time.minutes + ':' + this.chosenAthleteToRegister.result.result.time.seconds + '.' + this.chosenAthleteToRegister.result.result.time.milliseconds
     } else {
-      this.AthleteResultValue = null;
-      this.registerAthleteForm.get('athleteResult')?.enable();
+      this.AthleteResultValue = 'No Time';
+      this.registerAthleteForm.get('athleteResult')?.disable();
     }
   }
 
