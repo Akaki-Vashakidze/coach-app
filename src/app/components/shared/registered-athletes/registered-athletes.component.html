@@ -22,7 +22,7 @@
           <div class="panel-content">
             <div class="athleteRegistrationInfo" *ngFor="let race of athlete?.races, let i = index">
               <div>{{(i + 1) + '. ' + race?.race?.distance + ' '}}{{race?.race?.style | translate}}{{' '}}<span style="color: rgb(163, 162, 162);">{{race?.race?.gender + 'S' | translate}}</span></div>
-              <div class="qualTime">{{ race?.qualificationTime?.minutes == '77' ? 'No Time' : race?.qualificationTime?.minutes + ":" + race?.qualificationTime?.seconds + "." + race?.qualificationTime?.milliseconds}}</div>
+              <app-time class="qualTime" [timeObj]="race?.qualificationTime"></app-time>
             </div>
           </div>
         </mat-expansion-panel>

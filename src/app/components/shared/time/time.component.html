@@ -1,0 +1,17 @@
+<div *ngIf="timeObj" class="timeContainer">
+  <div *ngIf="timeObj.minutes == '77'">No time</div>
+
+  <ng-container *ngIf="timeObj.minutes != '77'">
+    <div class="minute">
+      {{ timeObj.minutes.toString().length === 1 ? '0' + timeObj.minutes : timeObj.minutes }}:
+    </div>
+
+    <div class="second">
+      {{ timeObj.seconds.toString().length === 1 ? '0' + timeObj.seconds : timeObj.seconds }}.
+    </div>
+
+    <div class="millisecond">
+      {{ timeObj.milliseconds.toString().length === 1 ? '0' + timeObj.milliseconds : timeObj.milliseconds }}
+    </div>
+  </ng-container>
+</div>

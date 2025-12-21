@@ -24,6 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { RegisteredAthletesComponent } from '../registered-athletes/registered-athletes.component';
+import { TimeComponent } from "../time/time.component";
 
 @Component({
   selector: 'app-competition-registration',
@@ -43,8 +44,9 @@ import { RegisteredAthletesComponent } from '../registered-athletes/registered-a
     LabelComponent,
     TranslateModule,
     RouterModule,
-    RegisteredAthletesComponent
-  ],
+    RegisteredAthletesComponent,
+    TimeComponent
+],
   templateUrl: './competition-registration.component.html',
   styleUrls: ['./competition-registration.component.scss'],
 })

@@ -13,7 +13,15 @@ export interface SessionData {
     password: string;
     userType: string;
   }
-  
+
+  export interface Time {
+        hours: any
+        minutes: any
+        seconds: any
+        milliseconds: any
+        totalMilliseconds: any
+  }
+
   export interface Competition {
     _id: string,
     title: string,

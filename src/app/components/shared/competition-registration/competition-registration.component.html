@@ -53,8 +53,7 @@
                   </div>
                   <div class="athleteInfoReg" *ngFor="let athlete of raceRegisterAthletes(), let i =index">
                     <div>{{i + 1 + '. '}}{{athlete.athlete.lastName + ' ' + athlete.athlete.firstName}}</div>
-                    <div>{{ athlete.qualificationTime.minutes == '77' ? 'No Time' : athlete.qualificationTime.minutes + ':' + athlete.qualificationTime.seconds + '.' +
-                      athlete.qualificationTime.milliseconds}}</div>
+                    <app-time [timeObj]="athlete.qualificationTime"></app-time>
                     <div><button (click)="deleteRegisteredAthlete(athlete)" mat-raised-button>{{'delete' | translate}}</button></div>
                   </div>
                 </div>
