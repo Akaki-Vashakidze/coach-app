@@ -314,9 +314,17 @@ deleteRegisteredAthlete(athlete:any){
   }
   
 
-  displayFn(option: TeamAthleteQualifications): string {
-    return option ? `${option?.member?.athlete?.lastName} ${option?.member?.athlete?.firstName}` : '';
-  }
+  displayFn = (option: TeamAthleteQualifications): string => {
+    if (!option) return '';
+
+    const athlete = option.member?.athlete;
+    
+    if (this.lang() === 'ka') {
+      return `${athlete?.lastName || ''} ${athlete?.firstName || ''}`.trim();
+    } else {
+      return `${athlete?.lastNameEn || ''} ${athlete?.firstNameEn || ''}`.trim();
+    }
+  };
 
   getFormattedDate(): string {
     const today = new Date();

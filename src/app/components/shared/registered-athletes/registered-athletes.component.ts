@@ -24,6 +24,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { TimeComponent } from '../time/time.component';
+import { I18nService } from '../../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-registered-athletes',
@@ -55,8 +57,16 @@ export class RegisteredAthletesComponent implements OnInit, OnChanges{
   teamId!:string;
   AllRegisterAthletes!:any;
   @Input() AllRegisterAthletesArr!:any;
+  lang = signal<string>('en');
   constructor(
+    public _i18nService:I18nService
   ) {
+      this._i18nService.changedLang
+        .pipe(takeUntilDestroyed())
+        .subscribe(lang => {
+          this.lang.set(lang || 'en')
+        }
+      );
   }
 
 

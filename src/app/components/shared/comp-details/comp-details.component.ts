@@ -11,6 +11,8 @@ import { SessionService } from '../../../services/session.service';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisteredAthletesComponent } from "../registered-athletes/registered-athletes.component";
+import { I18nService } from '../../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-comp-details',
@@ -25,12 +27,22 @@ export class CompDetailsComponent {
   coachId!:string;
   teamId!:string;
   eventId!:string;
+  lang = signal<string>('en');
   constructor(
     private competitionService: CompetitionsService,
     private teamService:TeamService,
     private sessionService:SessionService,
     private route: ActivatedRoute,
+    private _i18nService:I18nService
   ) {
+
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+      }
+    );
+
     this.eventId = this.route.snapshot.paramMap.get('id') || '';
     this.coachId = this.sessionService.userId;
      this.teamId = this.teamService.chosenTeam._id;

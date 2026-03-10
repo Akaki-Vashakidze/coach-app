@@ -52,7 +52,7 @@
                     <div>{{'action' | translate}}</div>
                   </div>
                   <div class="athleteInfoReg" *ngFor="let athlete of raceRegisterAthletes(), let i =index">
-                    <div>{{i + 1 + '. '}}{{athlete.athlete.lastName + ' ' + athlete.athlete.firstName}}</div>
+                    <div>{{i + 1 + '. '}}{{lang() == 'ka' ? athlete.athlete.lastName + ' ' + athlete.athlete.firstName : athlete.athlete.lastNameEn + ' ' + athlete.athlete.firstNameEn }}</div>
                     <app-time [timeObj]="athlete.qualificationTime"></app-time>
                     <div><button (click)="deleteRegisteredAthlete(athlete)" mat-raised-button>{{'delete' | translate}}</button></div>
                   </div>

@@ -59,6 +59,7 @@
     grid-template-columns: 2fr 1fr 1fr;
     align-items: center;
     padding: 3px;
+    text-transform: capitalize;
 }
 
 .add_athlete_form {
@@ -165,6 +166,7 @@
   .formFieldsCont {
     display: flex;
     flex-direction: row;
+    text-transform: capitalize;
   }
 
   .round-button {
