@@ -12,7 +12,7 @@ export class TeamService {
   chosenTeam!: any;
   teamIsSet = new BehaviorSubject('');
   constructor(private _http: HttpClient) {
-    let chosen = localStorage.getItem('lane4ChosenTeam')
+    let chosen = localStorage.getItem('lane4ChosenTeam2')
     if(chosen) {
       chosen ? this.chosenTeam = JSON.parse(chosen) : '';
     }
@@ -22,7 +22,7 @@ export class TeamService {
     return this._http.get<Team[]>(`/consoleApi/coach/${id}/teams`).pipe(
       tap(item => {
         if (!this.chosenTeam && item.length > 0) {
-          localStorage.setItem('lane4ChosenTeam',JSON.stringify(item[0]))
+          localStorage.setItem('lane4ChosenTeam2',JSON.stringify(item[0]))
           this.chosenTeam = item[0]
           this.teamIsSet.next(this.chosenTeam)
         }
@@ -32,7 +32,7 @@ export class TeamService {
 
   setChosenTeam(team: Team) {
     if(team){
-      localStorage.setItem('lane4ChosenTeam',JSON.stringify(team))
+      localStorage.setItem('lane4ChosenTeam2',JSON.stringify(team))
       this.chosenTeam = team;
     }
   }

@@ -21,7 +21,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     }),
     catchError(() => {
       _teamService.deleteChosenTeam(),
-      localStorage.removeItem('lane4ChosenTeam')
+      localStorage.removeItem('lane4ChosenTeam2')
       router.navigate(['/auth/signIn']);
       return of(false);
     })

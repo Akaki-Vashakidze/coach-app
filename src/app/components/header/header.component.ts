@@ -12,6 +12,7 @@ import { I18nService } from '../../services/i18n.service';
 import { MobileHeaderComponent } from '../shared/mobileHeader/mobileHeader.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedService } from '../../services/shared.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -25,13 +26,20 @@ export class HeaderComponent implements OnInit{
  @Input() menuItems!:{title:string, action:string}[]
  @Input() needUserInfo!:boolean;
  userData!:SessionData;
- teams = signal<Team[]>([{description:'',title:'',_id:''}])
+ teams = signal<Team[]>([])
  chosenTeam = signal<Team | null>(null)
+ lang = signal<string>('en');
 
  public language : string = 'English'
  menuDropdownOpen:boolean = false;
  constructor(private i18nService:I18nService,private sessionService:SessionService,private _router:Router, private _sharedService:SharedService,private teamService:TeamService ,private signInService:SignInService ){
   this.userData = sessionService.getSessionDataInfo();
+  this.i18nService.changedLang
+    .pipe(takeUntilDestroyed())
+    .subscribe(lang => {
+      this.lang.set(lang || 'en')
+    }
+  );
  }
 
   ngOnInit() {

@@ -119,6 +119,11 @@ export interface SubmitTwoFa {
     description:string;
     title:string;
     _id:string;
+    translations:{
+      en: {
+        title:string
+      }
+    }
   }
 
   export interface TeamDetails {

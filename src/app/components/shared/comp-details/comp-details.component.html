@@ -17,8 +17,8 @@
             label="id"
             [value]="event()?.event?.title"
           ></app-label> -->
-            <app-label label="Title" [value]="lang() == 'ka' ? event()?.event.title : event()?.event.translations.en.title"></app-label>
-            <app-label label="description" [value]="lang() == 'ka' ? event()?.event?.description : event()?.event?.translations.en.description"></app-label>
+            <app-label label="Title" [value]="lang() == 'ka' ? event()?.event.title : event()?.event?.translations?.en?.title"></app-label>
+            <app-label label="description" [value]="lang() == 'ka' ? event()?.event?.description : event()?.event?.translations?.en?.description"></app-label>
             <app-label label="address" [value]="event()?.event?.address"></app-label>
             <app-label label="Start_date" [value]="event()?.event?.startDate | date: 'dd-MM-yyy'"></app-label>
             <app-label label="end_date" [value]="event()?.event?.endDate | date: 'dd-MM-yyy'"></app-label>

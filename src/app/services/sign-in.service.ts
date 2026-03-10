@@ -44,7 +44,7 @@ export class SignInService {
   logout() {
     return this._http.delete<GenericResponce<boolean>>("/consoleApi/session", {}).pipe(tap((item) => {
       this._teamService.deleteChosenTeam(),
-      localStorage.removeItem('lane4ChosenTeam')
+      localStorage.removeItem('lane4ChosenTeam2')
       item.result.data ? this.sessionService.deleteLocalData() : '';
      }))
    }
