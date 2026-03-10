@@ -1,22 +1,40 @@
 <mat-card *ngIf="!loader" class="auth-card">
     <form [formGroup]="mobileForm" class="form" (ngSubmit)="sendCode()" novalidate>
-        <h2>{{'send_code' | translate}}</h2>
-        <div class="phoneNum">
-            <div class="labelNum">{{'mobile_num' | translate}}</div>
-            <div>{{userContactInfo?.phone}}</div>
-        </div>  
-        <mat-form-field appearance="outline" class="full-width recInputMat">
-            <mat-label>{{'mobile' | translate}}</mat-label>
-            <input matInput type="text" formControlName="mobileNumber" [placeholder]="'mobile' | translate" />
-            <mat-error *ngIf="hasError('mobileNumber', 'required')">number is required.</mat-error>
-            <mat-error *ngIf="hasError('mobileNumber', 'minlength')">
-                Mobile number must be 9 characters long.
-            </mat-error>
-        </mat-form-field>
+        <h2>{{'recovery_options' | translate}}</h2>
+
+        <mat-radio-group class="method-selector" [(ngModel)]="recoveryMethod" [ngModelOptions]="{standalone: true}">
+            <mat-radio-button value="phone" (change)="setMethod('phone')">
+                {{'phone_recovery' | translate}} ({{userContactInfo?.phone}})
+            </mat-radio-button>
+            <mat-radio-button value="email" (change)="setMethod('email')">
+                {{'email_recovery' | translate}} ({{userContactInfo?.email}})
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <div *ngIf="recoveryMethod === 'phone'" class="input-container">
+            <p class="instruction-text">{{'mobile_instruction_text' | translate}}</p>
+            <mat-form-field appearance="outline" class="full-width recInputMat">
+                <mat-label>{{'mobile' | translate}}</mat-label>
+                <input matInput type="tel" formControlName="mobileNumber" placeholder="9 digits" />
+                <mat-error *ngIf="hasError('mobileNumber', 'required')">Number is required.</mat-error>
+                <mat-error *ngIf="hasError('mobileNumber', 'minlength')">Must be 9 characters.</mat-error>
+                <mat-error *ngIf="hasError('mobileNumber', 'pattern')">Digits only.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="recoveryMethod === 'email'" class="input-container">
+            <p class="instruction-text">{{'email_instruction_text' | translate}}</p>
+            <mat-form-field appearance="outline" class="full-width recInputMat">
+                <mat-label>{{'email' | translate}}</mat-label>
+                <input matInput type="email" formControlName="email" [placeholder]="'your@email.com'" />
+                <mat-error *ngIf="hasError('email', 'required')">Email is required.</mat-error>
+                <mat-error *ngIf="hasError('email', 'email')">Please enter a valid email address.</mat-error>
+            </mat-form-field>
+        </div>
 
         <div class="actionDiv">
             <a routerLink="/auth/recoveryId">
-              <button mat-raised-button color="" type="button">{{'back' | translate}}</button>
+                <button mat-raised-button type="button">{{'back' | translate}}</button>
             </a>
             <button mat-raised-button color="primary" type="submit">
                 {{'send' | translate}}
@@ -24,5 +42,3 @@
         </div>
     </form>
 </mat-card>
-
-<app-loader-spinner *ngIf="loader" color="black" height="500px"></app-loader-spinner>

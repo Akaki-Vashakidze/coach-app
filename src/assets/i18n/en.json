@@ -133,6 +133,11 @@
   "here_athlete_info":"Here will be athlete info",
   "send":"Send code",
   "team":"Team",
-  "no_more_athletes":"You can not register another athlete."
+  "no_more_athletes":"You can not register another athlete.",
+  "recovery_options":"Recovery options",
+  "phone_recovery":"Phone number recovery",
+  "email_recovery":"Email recovery",
+  "email_instruction_text":"Please enter your registered email to receive the recovery code:",
+  "mobile_instruction_text":"Please enter your full mobile number to verify:"
 }
 

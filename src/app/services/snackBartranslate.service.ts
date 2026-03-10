@@ -33,7 +33,8 @@ export class SnackBarTranslateService {
             return 'Too many authorization requests, please wait';
           case 'registration_deadline_passed':
             return 'Registration deadline is passed.';
-
+          case 'USER_NOT_FOUND':
+            return 'User not found';
 
 
           default:
@@ -63,7 +64,8 @@ export class SnackBarTranslateService {
             return 'დაფიქსირდა რამოდენიმე ავტორიზაციის მცდელობა, გთხოვთ დაელოდოთ.';
           case 'registration_deadline_passed':
             return 'რეგისტრაციის ვადა ამოიწურა';
-
+          case 'USER_NOT_FOUND':
+            return 'მომხმარებელი ვერ მოიძებნა';
 
 
           default:

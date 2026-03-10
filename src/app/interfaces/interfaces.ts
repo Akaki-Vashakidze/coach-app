@@ -38,7 +38,14 @@ export interface SessionData {
     statement: {
         hasActiveStatement: boolean,
         participantMaxCount: number
-    }
+    },
+    translations: {
+      en: {
+        title: string,
+        description: string,
+        address: string,
+      }
+    } 
 }
 
 export interface SubmitTwoFa {
@@ -150,6 +157,8 @@ export interface Athlete {
   firstName: string,
   birthDate: Date,
   gender: string,
+  lastNameEn: string,
+  firstNameEn: string,
 }
 
 export interface TeamAthleteQualifications {
@@ -217,6 +226,13 @@ export interface Partition {
   endTime: string,
   poolLength: string,
   poolWidth: number,
+  translations: {
+    en: {
+      title: string,
+      description: string,
+      address: string,
+    }
+  },
   races: Race[]
 }
 

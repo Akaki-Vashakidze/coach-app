@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Athlete, TeamMembers } from '../../../interfaces/interfaces';
 import { LoaderSpinnerComponent } from '../loader-spinner/loader-spinner.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { I18nService } from '../../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-athletes',
@@ -16,7 +18,14 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class AthletesComponent {
   athletes = signal<TeamMembers[] | null>(null)
-  constructor(private teamService:TeamService){
+  lang = signal<string>('en');
+  constructor(private teamService:TeamService, private _i18nService:I18nService){
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+      }
+    );
     teamService.getTeamAthletes().subscribe(item => {
       if(item){
         this.athletes.set(item)

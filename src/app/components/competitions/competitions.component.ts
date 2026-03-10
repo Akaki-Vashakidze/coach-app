@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LabelComponent } from '../shared/label/label.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { I18nService } from '../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -22,7 +24,16 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class CompetitionsComponent {
   competitions = signal<Competition[] | null>(null);
-  constructor(private competitionService:CompetitionsService,private teamService:TeamService, private sessionService:SessionService){
+  lang = signal<string>('en');
+  constructor(private _i18nService:I18nService,private competitionService:CompetitionsService,private teamService:TeamService, private sessionService:SessionService){
+
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+      }
+    );
+    
     let chosenTeam = teamService.getChosenTeam()
     if(!chosenTeam) {
       teamService.teamIsSet.subscribe(item => {

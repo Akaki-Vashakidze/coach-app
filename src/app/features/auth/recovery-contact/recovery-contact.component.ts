@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio'; // Add this
 import { RouterModule, Router } from '@angular/router';
-import { UserType } from '../../../enums/enums';
 import { SignInService } from '../../../services/sign-in.service';
 import { LoaderSpinnerComponent } from '../../../components/shared/loader-spinner/loader-spinner.component';
 import { catchError, throwError } from 'rxjs';
@@ -15,62 +15,92 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-recovery-contact',
   standalone: true,
-  imports: [CommonModule, TranslateModule,ReactiveFormsModule,LoaderSpinnerComponent, MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule,RouterModule],
+  imports: [
+      CommonModule, 
+      TranslateModule, 
+      ReactiveFormsModule, 
+      FormsModule, 
+      LoaderSpinnerComponent, 
+      MatCardModule, 
+      MatInputModule, 
+      MatFormFieldModule, 
+      MatButtonModule, 
+      RouterModule,
+      MatRadioModule 
+    ],
   templateUrl: './recovery-contact.component.html',
   styleUrl: './recovery-contact.component.scss'
 })
+
+// ... other imports
 export class RecoveryContactComponent {
   mobileForm: FormGroup;
-  loader!:boolean;
-  coachUuid!:string;
-  pidOrEmail!:string;
-  userContactInfo!:{email:string, phone:string} | null;
-  constructor(private fb: FormBuilder, private _router:Router,private _signInService:SignInService) {
-    this.userContactInfo = _signInService.recoveryContactInfo;
-    this.mobileForm = this.fb.group({
-      mobileNumber: ['', [Validators.required, Validators.minLength(3)]],
-    });
-     this.pidOrEmail = this._signInService.userRecoveryUuid;
-     this.pidOrEmail ? '':_router.navigate(['/auth/signIn'])
-  }
+  loader: boolean = false;
+  pidOrEmail!: string;
+  userContactInfo!: { email: string, phone: string } | null;
+  recoveryMethod: 'phone' | 'email' = 'phone';
 
+  constructor(private fb: FormBuilder, private _router: Router, private _signInService: SignInService) {
+    this.userContactInfo = _signInService.recoveryContactInfo;
+    
+    this.mobileForm = this.fb.group({
+      // Phone control: active by default
+      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(9), Validators.maxLength(9)]],
+      // Email control: disabled by default
+      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]]
+    });
+
+    this.pidOrEmail = this._signInService.userRecoveryUuid;
+    if (!this.pidOrEmail) this._router.navigate(['/auth/signIn']);
+  }
 
   hasError(controlName: string, error: string): boolean {
     const control = this.mobileForm.get(controlName);
-    return control?.hasError(error) && control?.touched || false;
+    return !!(control?.hasError(error) && control?.touched);
+  }
+
+  setMethod(method: 'phone' | 'email') {
+    this.recoveryMethod = method;
+    const phoneCtrl = this.mobileForm.get('mobileNumber');
+    const emailCtrl = this.mobileForm.get('email');
+
+    if (method === 'email') {
+      phoneCtrl?.disable();
+      emailCtrl?.enable();
+    } else {
+      phoneCtrl?.enable();
+      emailCtrl?.disable();
+    }
   }
 
   sendCode() {
-    const target = this.mobileForm.value.mobileNumber;
+    if (this.mobileForm.invalid) {
+      this.mobileForm.markAllAsTouched();
+      return;
+    }
+
+    // We use getRawValue() because one of the fields is always disabled
+    const formValues = this.mobileForm.getRawValue();
+    
     const data = {
-      targetType: "phone",
+      targetType: this.recoveryMethod,
       userType: "coach",
-      target,
+      target: this.recoveryMethod === 'phone' ? formValues.mobileNumber : formValues.email,
       pidOrEmail: this.pidOrEmail,
     };
+
     this.loader = true;
-  
-    this._signInService
-      .recoverPasswordStart(data)
-      .pipe(
-        catchError((err) => {
-          this.loader = false;
-          if (err.status === 400) {
-            console.error('Bad Request (400):', err);
-          } else {
-            console.error('An unexpected error occurred:', err);
-          }
-          return throwError(() => err);
-        })
-      )
+    this._signInService.recoverPasswordStart(data)
+      .pipe(catchError((err) => { 
+        this.loader = false; 
+        return throwError(() => err); 
+      }))
       .subscribe((item) => {
+        this.loader = false;
         if (item.uuid) {
           this._signInService.setCoachUuid(item.uuid);
-          this.loader = false;
           this._router.navigate(['/auth/confirmCode']);
         }
       });
   }
-  
-  
 }

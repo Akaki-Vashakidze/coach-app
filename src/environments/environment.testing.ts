@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUri: 'https://api-dev.lane4.ge',
+  apiUri: 'https://api.lane4.ge',
 };

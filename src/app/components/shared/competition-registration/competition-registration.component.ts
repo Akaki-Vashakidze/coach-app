@@ -25,6 +25,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { RegisteredAthletesComponent } from '../registered-athletes/registered-athletes.component';
 import { TimeComponent } from "../time/time.component";
+import { I18nService } from '../../../services/i18n.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-competition-registration',
@@ -69,6 +71,7 @@ export class CompetitionRegistrationComponent implements OnInit {
   teamId!:string;
   isLoading!:boolean;
   isLoadingAllRegAthletes!:boolean;
+  lang = signal<string>('en');
 
   constructor(
     private _dialog: MatDialog,
@@ -79,8 +82,17 @@ export class CompetitionRegistrationComponent implements OnInit {
     private sessionService:SessionService,
     private convertItimeService:ConvertItimeService,
     private fb: FormBuilder,
-    private snackBarService:SnackbarService
+    private snackBarService:SnackbarService,
+    private _i18nService: I18nService
   ) {
+
+    this._i18nService.changedLang
+      .pipe(takeUntilDestroyed())
+      .subscribe(lang => {
+        this.lang.set(lang || 'en')
+      }
+    );
+
      this.eventId = this.route.snapshot.paramMap.get('id') || '';
      this.registerAthleteForm = this.fb.group({
       athleteInfo: ['', [Validators.required]],

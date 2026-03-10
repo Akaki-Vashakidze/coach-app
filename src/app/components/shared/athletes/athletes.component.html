@@ -3,7 +3,7 @@
       <mat-expansion-panel-header>
         <div class="header-content">
           <div class="title">
-            <span class="header-title">{{athlete.athlete?.lastName + ' ' + athlete?.athlete?.firstName}}</span>
+            <span class="header-title">{{lang() == 'ka' ? athlete.athlete?.lastName + ' ' + athlete?.athlete?.firstName : athlete.athlete?.lastNameEn+ ' ' + athlete.athlete?.firstNameEn}}</span>
             <span class="header-subtitle">{{athlete?.athlete?.gender || '' | translate}}</span>
           </div>
           <span class="date">{{athlete?.athlete?.birthDate | date : 'yyyy'}}</span>
