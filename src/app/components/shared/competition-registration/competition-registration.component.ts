@@ -307,8 +307,10 @@ deleteRegisteredAthlete(athlete:any){
     const filterValue = (value || '').toLowerCase()
     const result = this.athletes()?.filter(
       (athlete) =>
-        athlete?.member.athlete.lastName.toLowerCase().includes(filterValue) ||
-        athlete?.member.athlete.lastName.toLowerCase().includes(filterValue)
+        athlete?.member.athlete.firstName.toLowerCase().includes(filterValue) ||
+        athlete?.member.athlete.lastName.toLowerCase().includes(filterValue) || 
+        athlete?.member.athlete.lastNameEn.toLowerCase().includes(filterValue) || 
+        athlete?.member.athlete.firstNameEn.toLowerCase().includes(filterValue) 
     );
     return result?.length ? result : null;
   }
